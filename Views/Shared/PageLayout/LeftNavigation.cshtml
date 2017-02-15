@@ -1,0 +1,41 @@
+﻿@model Ingeniux.Runtime.ICMSElement
+@using Ingeniux.Runtime
+@{
+    // This is an example left navigation
+    
+    var leftNav = Model.GetNavigation("MainNavigation");
+    if (leftNav != null)
+    {
+        var anavPages = Model.Page.GetNavigationItems("AncestorNavigation").Where(item => item.Schema != "Folder" && item.Schema != "HomePage");
+
+        var sectionPage = (anavPages.Any()) ? anavPages.FirstOrDefault() : null;
+        var leftNavLinks = leftNav.GetLinkItems(null, false);
+
+        var sectionPageInLeftNav = (sectionPage != null) ? leftNav.GetLinkItems(null, true).Where(item => item.TargetID == sectionPage.TargetID).FirstOrDefault() : null;
+
+        if (sectionPageInLeftNav != null)
+        {
+            leftNavLinks = sectionPageInLeftNav.GetLinkItems(null, false);
+        }
+        
+		<div class="side">
+			<div class="component">
+				@if (sectionPage != null)
+				{
+					<h4 class="header">@sectionPage.GetAttributeValue("Title")</h4>
+				}
+				<ul class="side-nav">
+					@*<li class="current">@_Helpers.RenderCMSLink(anavPages.FirstOrDefault(), Url)</li>*@
+					@foreach (var link in leftNavLinks)
+					{
+						Html.RenderPartial("PageLayout/LeftNavigationPage", link);
+					}          
+				</ul>
+			</div>  
+		 </div>
+		 <div class="side-location-1"></div>
+    }
+}
+
+
+

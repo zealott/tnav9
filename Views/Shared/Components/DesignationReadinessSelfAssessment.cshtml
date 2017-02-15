@@ -1,0 +1,82 @@
+﻿@model Ingeniux.Runtime.ICMSElement
+@using Ingeniux.Runtime
+@if (Model != null)
+{
+
+	string header = Model.GetElementValue("Header");
+	string subHeader = Model.GetElementValue("SubHeader");
+	IEnumerable<string> questions = Model.Elements("Question").Select(elt => elt.Value);
+	string submitButtonLabel = !string.IsNullOrWhiteSpace(Model.GetElementValue("SubmitButtonLabel")) ? Model.GetElementValue("SubmitButtonLabel") : "Am I Ready?";
+	string positiveResultHeader = Model.GetElementValue("PositiveResultHeader");
+	string positiveResultCopy = Model.GetElementValue("PositiveResultCopy");
+	string negativeResultHeader = Model.GetElementValue("NegativeResultHeader");
+	string negativeResultCopy = Model.GetElementValue("NegativeResultCopy");
+	string correctAnswerThreshold = Model.GetElementValue("CorrectAnswerThreshold");
+
+	int count = 1;
+
+	<section class="beige-background">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<form action="" class="self-assessment-component">
+						<h1>@Html.Raw(header)</h1>
+						@if (!string.IsNullOrWhiteSpace(subHeader))
+						{
+							<p>@Html.Raw(subHeader)</p>
+						}
+						@foreach (var question in questions)
+						{
+							<div class="question-and-answer-container answer-match-height-@(count)">
+								<div class="question">@Html.Raw(question)</div>
+								<div class="answers-container">
+									<div class="answer agree answer-match-height-@(count)">
+										<input name="answer-@(count)" class="answer-button" id="agree-@(count)" type="radio" value="agree">
+										<label for="agree-@(count)">AGREE</label>
+									</div>
+									<div class="answer somewhat answer-match-height-@(count)">
+										<input name="answer-@(count)" class="answer-button" id="somewhat-@(count)" type="radio" value="somewhat">
+										<label for="somewhat-@(count)">SOMEWHAT</label>
+									</div>
+									<div class="answer disagree answer-match-height-@(count)">
+										<input name="answer-@(count)" class="answer-button" id="disagree-@(count)" type="radio" value="disagree">
+										<label for="disagree-@(count)">DISAGREE</label>
+									</div>
+								</div>
+							</div>
+							count++;					
+						}
+						<input type="submit" value="@Html.Raw(submitButtonLabel)" class="am-i-ready" />
+						<div class="result-message positive">
+							<h1>@Html.Raw(positiveResultHeader)</h1>
+							<p>@Html.Raw(positiveResultCopy)</p>
+						</div>
+						<div class="result-message negative">
+							<h1>@Html.Raw(negativeResultHeader)</h1>
+							<p>@Html.Raw(negativeResultCopy)</p>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div hidden="hidden" id="result-holder" data-value="0"></div>
+		<script>
+			$('.answer-button').click(function () {
+				//get the result value
+
+				//if agree was selected
+			});
+			$('.am-i-ready').click(function (e) {
+				e.preventDefault();
+				$('.result-message').slideUp();
+				var num = $('.answer-button[value="agree"]:checked').length;
+				if (num >= parseInt(@(correctAnswerThreshold))) {
+					$('.result-message.positive').slideDown();
+				}
+				else {
+					$('.result-message.negative').slideDown();
+				}
+			});
+		</script>
+	</section>
+}

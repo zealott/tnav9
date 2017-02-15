@@ -1,0 +1,16 @@
+﻿
+@model Ingeniux.Runtime.CMSPageRequest
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+@using Ingeniux.Runtime
+@using Newtonsoft.Json
+
+@if (Model != null)
+{
+    // Mobile schema specific code goes here
+
+	string response = _Functions.WebRequestFromCMS("https://secure.scic.com:14015/lms/WebinarSessions", "foobar");	
+	
+	
+ }

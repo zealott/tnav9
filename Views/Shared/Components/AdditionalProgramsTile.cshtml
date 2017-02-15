@@ -1,0 +1,18 @@
+﻿@model Ingeniux.Runtime.ICMSElement
+@using Ingeniux.Runtime
+@if (Model != null)
+{
+
+	string backgroundColor = Model.GetElementValue("BackgroundColor");
+	ICMSElement image = Model.Element("Image");
+	string heading = Model.GetElementValue("Heading");
+	List<ICMSLinkElement> links = Model.GetLinkItems("Link").ToList();
+
+	<div class="designation-tile @backgroundColor-background">
+		<ul class="designation-ul-holder">
+			<li><strong>@Html.Raw(heading)</strong></li>
+			@_Helpers.RenderCMSLinkList(links, Url)
+		</ul>
+		@_Helpers.RenderImage(image, Url, "designation-logo csrm-logo")
+	</div>
+}

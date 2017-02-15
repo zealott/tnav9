@@ -1,0 +1,47 @@
+﻿@model Ingeniux.Runtime.ICMSElement
+@using Ingeniux.Runtime
+@using System.Xml.Linq;
+@if (Model != null)
+{
+
+	string contactInfo = Model.GetElementValue("ContactInfo");
+	string footerHeader = Model.GetElementValue("FooterHeader");
+	string copyright = Model.GetElementValue("Copyright");
+	ICMSElement backgroundImage = Model.Element("BackgroundImage");
+	List<ICMSLinkElement> footerLinks = Model.GetLinkItems("FooterLink").ToList();
+	<footer>
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-xs-12 col-md-5">
+					@if (!string.IsNullOrWhiteSpace(footerHeader))
+					{
+						<h1>@Html.Raw(footerHeader)</h1>
+					}
+					@if (!string.IsNullOrWhiteSpace(contactInfo))
+					{
+						@Html.Raw(contactInfo)
+					}
+				</div>
+				@if (footerLinks.Any())
+				{
+					<div class="col-xs-12 col-xs-offset-0 col-md-5 col-md-offset-2">
+						<ul>
+							@foreach (var footerLink in footerLinks)
+							{
+								@_Helpers.RenderCMSLiWithLink(footerLink, Url)
+							}
+						</ul>
+					</div>
+				}
+				@if (!string.IsNullOrWhiteSpace(copyright))
+				{
+					<div class="col-xs-12">
+						<p class="copywright-notice">@Html.Raw(copyright)</p>
+					</div>
+				}
+				@_Helpers.RenderImage(backgroundImage, Url, "footer-logo")
+			</div>
+		</div>
+	</footer>
+}

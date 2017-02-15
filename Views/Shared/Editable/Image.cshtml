@@ -1,0 +1,7 @@
+﻿@model Ingeniux.Runtime.ICMSElement
+@using Ingeniux.Runtime
+@if (Model != null && (!String.IsNullOrWhiteSpace(Model.Value) || Model.EditMode))
+{
+    <img src="@Url.Asset("images/" + Model.Value, Model)"  @_Helpers.RenderICEAttribute(Model) alt="@Model.GetAttributeValue("AlternateText")" />
+}
+ 

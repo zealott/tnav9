@@ -1,0 +1,66 @@
+﻿@model Ingeniux.Runtime.ICMSElement
+@using Ingeniux.Runtime
+@using Ingeniux.Runtime.Models
+@using System.Xml.Linq;
+@if (Model != null)
+{
+
+	ICMSElement logo = Model.Element("Logo");
+	ICMSLinkElement logoLink = Model.GetLinkItem("LogoLink");
+	ICMSLinkElement loginLink = Model.GetLinkItem("LoginLink");
+	ICMSLinkElement searchResults = Model.GetLinkItem("SearchResults");
+	
+	<header>
+		<div class="container">
+			<div class="row">
+
+				<div class="col-xs-12">
+					@_Helpers.RenderCMSLink(logoLink, Url,cssClasses: "main-header-logo-link")
+					<nav>
+						<ul>
+							@if (loginLink != null)
+							{
+								<li class="hide-from-xs">@_Helpers.RenderCMSLink(loginLink, Url)</li>
+							}
+							<li class="hide-from-xs"><a href="#">Cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+							<li><a class="menu-toggle" href="#"><i class="fa fa-bars" aria-hidden="true"></i></a></li>
+							<li class="hide-from-xs"><a class="search-toggle" href="#">Search<i class="fa fa-search" aria-hidden="true"></i></a></li>
+						</ul>
+					</nav>
+				</div>
+
+				<ul class="menu-drop-down">
+					<li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>Register</a></li>
+					<li><a href="#"><i class="fa fa-book" aria-hidden="true"></i>CE by State</a></li>
+					<li><a href="#"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Programs</a></li>
+					<li><a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>Chat</a></li>
+					<li><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i>Contact Us</a></li>
+					<li class="hide-from-sm-up"><a href="#"><i class="fa fa-user-circle" aria-hidden="true"></i>Login</a></li>
+					<li class="hide-from-sm-up"><a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Cart</a></li>
+					<li class="hide-from-sm-up"><a class="search-toggle" href="#"><i class="fa fa-search" aria-hidden="true"></i>Search</a></li>
+				</ul>
+
+			</div>
+			<!-- Row -->
+		</div>
+		<!-- Container -->
+
+		<div class="search-input-holder">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-xs-12">
+						<form action="@_Functions.GetLinkAction(searchResults, Url)" class="">
+							<button><i class="fa fa-search hide-from-mob" aria-hidden="true"></i></button>
+							<input type="text" name="terms" placeholder="Enter Search Term..." id="main-site-search">
+						</form>
+						<i class="fa fa-times" aria-hidden="true"></i>
+					</div>
+
+				</div>
+				<!-- Row -->
+			</div>
+			<!-- Container -->
+		</div>
+	</header>
+}

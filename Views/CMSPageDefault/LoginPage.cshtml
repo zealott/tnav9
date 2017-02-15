@@ -1,0 +1,52 @@
+﻿@model Ingeniux.Runtime.CMSPageRequest
+@{
+	Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+@using Ingeniux.Runtime
+@if (Model != null)
+{
+	ICMSElement title = Model.Element("Title");
+	ICMSElement upperBodyCopy = Model.Element("UpperBodyCopy");
+	ICMSElement lowerBodyCopy = Model.Element("LowerBodyCopy");
+	ICMSElement usernameLabel = Model.Element("UsernameLabel");
+	ICMSElement passwordLabel = Model.Element("PasswordLabel");
+	ICMSElement signInButtonLabel = Model.Element("SignInButtonLabel");
+
+
+	<div class="page-title blue-background center-container">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-xs-offset-0 col-md-offset-2 col-md-8">
+					@{
+						Html.RenderPartial("Editable/Title", title);
+					}
+				</div>
+			</div>
+			<!-- Row -->
+		</div>
+		<!-- Container -->
+	</div>
+
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-xs-offset-0 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+					<div @_Helpers.RenderICEAttribute(upperBodyCopy)>
+						@Html.Raw(upperBodyCopy.Value)
+					</div>
+					<form method="post" action="@Url.Action("LogIn", "Profile")" class="login-form">
+						<input type="text" name="username" placeholder="@Html.Raw(usernameLabel)">
+						<input type="password" name="password" placeholder="@Html.Raw(passwordLabel)">
+						<input type="submit" value="@Html.Raw(signInButtonLabel.Value)" class="blue-background">
+					</form>
+					<div @_Helpers.RenderICEAttribute(lowerBodyCopy)>
+						@Html.Raw(lowerBodyCopy.Value)
+					</div>
+				</div>
+			</div>
+			<!-- Row -->
+		</div>
+		<!-- Container -->
+	</section>
+
+}

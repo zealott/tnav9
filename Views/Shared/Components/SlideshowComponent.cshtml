@@ -1,0 +1,22 @@
+﻿@model Ingeniux.Runtime.ICMSElement
+@using Ingeniux.Runtime
+@if (Model != null)
+{
+    // Component specific code goes here 
+	ICMSElement image = Model.Element("Image");
+	string header = Model.GetElementValue("Header");
+	string subHeader = Model.GetElementValue("SubHeader");
+	ICMSLinkElement link = Model.GetLinkItem("Link");
+	MvcHtmlString background = !string.IsNullOrWhiteSpace(image.Value) ? new MvcHtmlString("style=\"background: url('images/" + image.Value + "') center center no-repeat; background-size: cover;\"") : new MvcHtmlString("");
+
+	<div class="hero-item hero" @background>
+		<div class="hero-content-holder">
+			<h1>@Html.Raw(header)</h1>
+			@if (!string.IsNullOrWhiteSpace(subHeader))
+			{
+				<p>@Html.Raw(subHeader)</p>
+			}
+			@_Helpers.RenderCMSLink(link, Url, cssClasses:"main-button blue-button")
+		</div>
+	</div>
+}

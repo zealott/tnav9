@@ -1,0 +1,154 @@
+﻿@model Ingeniux.Runtime.CMSPageRequest
+@{
+	Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+@using Ingeniux.Runtime
+@if (Model != null)
+{
+	
+	ICMSElement title = Model.Element("Title");
+	List<ICMSElement> faqs = Model.Elements("FAQComponent").ToList();
+	ICMSElement largeBlockComponent = Model.Element(null, "LargeBlockComponent");
+
+
+	<div class="page-title yellow-background center-container">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-xs-offset-0 col-md-offset-2 col-md-8">
+					@{
+						Html.RenderPartial("Editable/Title", title);
+					}
+				</div>
+			</div>
+			<!-- Row -->
+		</div>
+		<!-- Container -->
+	</div>
+
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-2">
+					<div class="mobile-trigger"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;FAQ Menu</div>
+					<ul class="left-nav">
+						<li><a href="#">CIC Program</a></li>
+						<li><a href="#">FAQ</a></li>
+						<li><a href="#">Faculty</a></li>
+						<li><a href="#">Update Options</a></li>
+						<li><a href="#">CRM for CIC</a></li>
+						<li><a class="current" href="#">Scholarships</a></li>
+					</ul>
+				</div>
+
+				@if (faqs.Any())
+				{
+					<div class="col-xs-12 col-sm-8">
+					@foreach (var faq in faqs)
+					{
+						<div class="faq-container">
+							<div class="faq-trigger active">@Html.Raw(faq.GetElementValue("Question"))</div>
+							<div class="faq-answer">
+								@Html.Raw(faq.GetElementValue("Answer"))
+							</div>
+						</div>
+					}
+					</div>
+				}
+				
+
+				<div class="col-xs-12 col-sm-2">
+					<ul class="right-nav">
+						@{
+							Html.RenderPartial("PageLayout/Share", Model);
+						}
+					</ul>
+				</div>
+
+			</div>
+			<!-- Row -->
+		</div>
+		<!-- Container -->
+	</section>
+
+	Html.RenderPartial("Components/" + largeBlockComponent.RootElementName, largeBlockComponent);
+	
+
+	<section>
+		<div class="container">
+			<div class="row">
+
+				<div class="col-xs-12">
+
+					<h2>Participants Who Took this Course Bought</h2>
+
+					<div class="image-slider">
+						<div class="slider-item">
+							<a href="#">
+								<span class="slider-img-holder">
+									<img src="img/product_1.jpg">
+									<span class="add-to-cart-overlay"><span class="vert-center-only">Add to Cart</span></span>
+								</span>
+								<p class="slider-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</a>
+						</div>
+
+						<div class="slider-item">
+							<a href="#">
+								<span class="slider-img-holder">
+									<img src="img/product_2.jpg">
+									<span class="add-to-cart-overlay"><span class="vert-center-only">Add to Cart</span></span>
+								</span>
+								<p class="slider-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</a>
+						</div>
+
+						<div class="slider-item">
+							<a href="#">
+								<span class="slider-img-holder">
+									<img src="img/product_3.jpg">
+									<span class="add-to-cart-overlay"><span class="vert-center-only">Add to Cart</span></span>
+								</span>
+								<p class="slider-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</a>
+						</div>
+
+						<div class="slider-item">
+							<a href="#">
+								<span class="slider-img-holder">
+									<img src="img/product_4.jpg">
+									<span class="add-to-cart-overlay"><span class="vert-center-only">Add to Cart</span></span>
+								</span>
+								<p class="slider-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</a>
+						</div>
+
+						<div class="slider-item">
+							<a href="#">
+								<span class="slider-img-holder">
+									<img src="img/product_2.jpg">
+									<span class="add-to-cart-overlay"><span class="vert-center-only">Add to Cart</span></span>
+								</span>
+								<p class="slider-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</a>
+						</div>
+
+						<div class="slider-item">
+							<a href="#">
+								<span class="slider-img-holder">
+									<img src="img/product_3.jpg">
+									<span class="add-to-cart-overlay"><span class="vert-center-only">Add to Cart</span></span>
+								</span>
+								<p class="slider-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</a>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+			<!-- Row -->
+		</div>
+		<!-- Container -->
+	</section>
+}

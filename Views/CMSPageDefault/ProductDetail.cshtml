@@ -1,0 +1,181 @@
+﻿@model Ingeniux.Runtime.CMSPageRequest
+@{
+	Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+@using Ingeniux.Runtime
+@if (Model != null)
+{
+
+	ICMSElement title = Model.Element("Title");
+	ICMSElement subTitle = Model.Element("SubTitle");
+	ICMSElement bodyCopy = Model.Element("BodyCopy");
+	ICMSElement productTitle = Model.Element("ProductTitle");
+	ICMSElement mainImage = Model.Element("MainImage"); 
+	ICMSElement siteControl = _Functions.GetSiteControl(Model);
+	List<ICMSLinkElement> allBookstore = Model.GetNavigationItems("AllBookstoreProducts", NavigationElementType.Navigation, true, true).Where(elt => elt.GetAttributeValue("Schema") == "ProductDetail").ToList();
+	string bookstoreRelatedProductsHeading = siteControl != null ? siteControl.GetElementValue("BookstoreRelatedProductsHeading") : "";
+	string bookstoreAlsoBoughtHeading = siteControl != null ? siteControl.GetElementValue("BookstoreAlsoBoughtHeading") : "";
+
+	List<ICMSNavigatingCategory> bookstoreRelatedProductCategories = _Functions.GetChildCategories(Model.Page, "BookstoreRelatedProductCategories", true, false, true).Where(elt => Model.Categories.Any(alt => alt.ID == elt.ID)).ToList();
+	List<ICMSNavigatingCategory> bookstoreAlsoBoughtCategories = _Functions.GetChildCategories(Model.Page, "BookstoreAlsoBoughtCategories", true, false, true).Where(elt => Model.Categories.Any(alt => alt.ID == elt.ID)).ToList();
+
+	List<ICMSLinkElement> filteredBookstoreRelatedProducts = new List<ICMSLinkElement>();
+	List<ICMSLinkElement> filterdAlsoBoughtProducts = new List<ICMSLinkElement>();
+
+	if (bookstoreAlsoBoughtCategories.Any())
+	{
+		filterdAlsoBoughtProducts = allBookstore.Where(elt => Model.ID != elt.ID && elt.GetAttributeValue("CategoryIds").Split('|').Any(alt => bookstoreAlsoBoughtCategories.Any(balt => alt == balt.ID))).ToList();
+	}
+
+	if (bookstoreRelatedProductCategories.Any())
+	{
+		filteredBookstoreRelatedProducts = allBookstore.Where(elt => Model.ID != elt.ID && elt.GetAttributeValue("CategoryIds").Split('|').Any(alt => bookstoreRelatedProductCategories.Any(balt => alt == balt.ID))).ToList();
+	}
+
+	<div class="page-title blue-background center-container">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-xs-offset-0 col-md-offset-2 col-md-8">
+					<h1 @_Helpers.RenderICEAttribute(title)>@Html.Raw(title.Value)
+						@if (!string.IsNullOrWhiteSpace(subTitle.Value))
+						{
+							<br />
+							<span @_Helpers.RenderICEAttribute(subTitle)>@Html.Raw(subTitle.Value)</span>
+						}
+					</h1>
+				</div>
+			</div>
+			<!-- Row -->
+		</div>
+		<!-- Container -->
+	</div>
+
+	<section>
+		<div class="container">
+			<div class="row">
+
+				<div class="col-xs-12 col-sm-2">
+					<div class="mobile-trigger"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;Product Menu</div>
+					<ul class="left-nav">
+						<li><a href="#"><strong>Bookstore</strong></a></li>
+						<li><a class="current" href="#">Essential Series</a></li>
+						<li><a href="#">Profile Series</a></li>
+						<li><a href="#">Sales &amp; Marketing Series</a></li>
+						<li><a href="#">Agency M anagement Series</a></li>
+						<li><a href="#">Coverages and Additional Resources</a></li>
+
+					</ul>
+				</div>
+
+				<div class="col-xs-12 col-sm-8">
+					<div class="header-info">
+						<div class="book-title" @_Helpers.RenderICEAttribute(productTitle)>@Html.Raw(productTitle.Value)</div>
+						<div class="product-info-holder cf">
+							@if (!string.IsNullOrWhiteSpace(mainImage.Value))
+							{
+								<div class="book-holder">
+									@_Helpers.RenderImage(mainImage, Url)
+								</div>
+							}
+							<div class="product-buttons-holder">
+								<a class="main-button glass-button" href="#">Paperback $65<i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+								<a class="main-button glass-button" href="#">eBook (PDF) $55<i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+								<a class="main-button blue-button" href="#">Register</a>
+								<a class="main-button grey-button" href="#">Register</a>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12 col-xs-offset-0 col-sm-11 col-sm-offset-1 book-preview">
+							@{
+								Html.RenderPartial("Editable/BodyCopy", bodyCopy);
+							}
+						</div>
+						@*<div class="center-this-container">
+							<a href="#" class="main-button grey-button">Read More</a>
+						</div>*@
+					</div>
+				</div>
+
+				<div class="col-xs-12 col-sm-2">
+					<ul class="right-nav">
+						@{
+							Html.RenderPartial("PageLayout/Share", Model);
+						}	
+					</ul>
+				</div>
+
+			</div>
+			<!-- Row -->
+		</div>
+		<!-- Container -->
+	</section>
+
+	<hr>
+
+	if (filteredBookstoreRelatedProducts.Any())
+	{
+		<section class="related-products">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						@if (!string.IsNullOrWhiteSpace(bookstoreRelatedProductsHeading))
+						{
+							<h2>@Html.Raw(bookstoreRelatedProductsHeading)</h2>
+						}
+						<div class="image-slider">
+							@foreach (var filteredBookstoreRelatedProduct in filteredBookstoreRelatedProducts)
+							{
+								<div class="slider-item">
+									<a href="@_Functions.GetLinkAction(filteredBookstoreRelatedProduct, Url)">
+										<span class="slider-img-holder">
+											@_Helpers.RenderImage(filteredBookstoreRelatedProduct.GetAttributeValue("Thumbnail"), Url, filteredBookstoreRelatedProduct.GetAttributeValue("MainImageAlt"), filteredBookstoreRelatedProduct)
+											<span class="add-to-cart-overlay"><span class="vert-center-only">Add to Cart</span></span>
+										</span>
+										<p class="slider-info">@Html.Raw(filteredBookstoreRelatedProduct.GetAttributeValue("Abstract"))</p>
+									</a>
+								</div>							
+							}
+						</div>
+					</div>
+				</div>
+				<!-- Row -->
+			</div>
+			<!-- Container -->
+		</section>
+		<hr>
+	}
+	if (filterdAlsoBoughtProducts.Any())
+	{
+		<section class="also-bought">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-xs-12">
+						@if (!string.IsNullOrWhiteSpace(bookstoreAlsoBoughtHeading))
+						{
+							<h2>@Html.Raw(bookstoreAlsoBoughtHeading)</h2>
+						}
+						<div class="image-slider">
+							@foreach (var filteredAlsoBoughtProduct in filterdAlsoBoughtProducts)
+							{
+								<div class="slider-item">
+									<a href="@Url.Action("AddItemToCart", "Cart")?productId=1123">
+										<span class="slider-img-holder">
+											@_Helpers.RenderImage(filteredAlsoBoughtProduct.GetAttributeValue("Thumbnail"), Url, filteredAlsoBoughtProduct.GetAttributeValue("MainImageAlt"), filteredAlsoBoughtProduct)
+											
+											<span class="add-to-cart-overlay"><span class="vert-center-only">Add to Cart</span></span>
+										</span>
+										<p class="slider-info">@Html.Raw(filteredAlsoBoughtProduct.GetAttributeValue("Abstract"))</p>
+									</a>
+								</div>								
+							}
+						</div>
+					</div>
+				</div>
+				<!-- Row -->
+			</div>
+			<!-- Container -->
+		</section>
+	}
+}

@@ -1,0 +1,21 @@
+﻿@model Ingeniux.Runtime.ICMSElement
+@using Ingeniux.Runtime
+@if (Model != null)
+{
+	string backgroundColor = Model.GetElementValue("BackgroundColor");
+	ICMSElement image = Model.Element("Image");
+	string heading = Model.GetElementValue("Heading");
+	string subHeading = Model.GetElementValue("SubHeading");
+	ICMSLinkElement link = Model.GetLinkItem("Link");
+
+	<a href="@_Functions.GetLinkAction(link, Url)" class="designation-tile @backgroundColor-background">
+		<div class="designation-content-holder">
+			<h1>@Html.Raw(heading)</h1>
+			@if (!string.IsNullOrWhiteSpace(subHeading))
+			{
+				<h2>@Html.Raw(subHeading)</h2>
+			}
+		</div>
+		@_Helpers.RenderImage(image, Url, "designation-logo csrm-logo")
+	</a>
+}

@@ -1,0 +1,27 @@
+﻿@model Ingeniux.Runtime.ICMSLinkElement
+@using Ingeniux.Runtime
+@if (Model != null && Model.Schema != "Folder")
+{
+    // This is an example left navigation page.
+
+    var anavPages = Model.Page.GetNavigationItems("AncestorNavigation");
+    bool linkSelected = anavPages.Any(elt => elt.TargetID == Model.TargetID);
+    string classStr = (linkSelected) ? "children" : "";
+
+    string activeClassStr = (Model.TargetID == Model.Page.ID || anavPages.Any(elt => elt.ID == Model.TargetID)) ? "on" : classStr;
+    <li @_Functions.GetClassAttrString(activeClassStr)>
+        @{
+            @_Helpers.RenderCMSLink(Model, Url, "", true, activeClassStr)
+			var childLinks = Model.GetLinkItems().Where(item => item.Schema != "Folder");
+			if (linkSelected && childLinks.Any())
+			{
+					<ul>
+						@foreach (var sublink in childLinks)
+						{
+							Html.RenderPartial("PageLayout/LeftNavigationPage", sublink);
+						}
+					</ul>
+			}
+        }
+    </li>	
+}

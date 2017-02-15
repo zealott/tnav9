@@ -1,0 +1,18 @@
+﻿@model Ingeniux.Runtime.ICMSElement
+@using Ingeniux.Runtime
+@if (Model != null)
+{
+	ICMSLinkElement link = Model.GetLinkItem("HighlightPage");
+	string highlightType = Model.GetElementValue("HighlightType");
+	string backgroundColor = Model.GetElementValue("BackgroundColor");
+
+
+	<div class="highlight-news-container">
+		<div class="highlight-text-holder @backgroundColor-background">
+			<p class="type">@Html.Raw(highlightType)</p>
+			<p class="title">@Html.Raw(link.GetAttributeValue("Title"))</p>
+			<p class="date">@_Helpers.FormatDate(link.GetAttributeValue("PublicationDate"), "MMMM d, yyyy")</p>
+			@_Helpers.RenderCMSLink(link, Url, cssClasses:"highlight-button")
+		</div>
+	</div>
+}

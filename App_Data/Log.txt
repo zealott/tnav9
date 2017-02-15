@@ -1,0 +1,194 @@
+2016-09-13T18:16:28.6224394Z - 144572 - Info - Creating memory provider from binary data file 'D:\igxsites\v90\ewebv9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2016-09-13T18:16:29.6536987Z - 144572 - Info - Created provider from binary data file 'D:\igxsites\v90\ewebv9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-27T00:07:54.4265212Z - 571876 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-27T00:07:54.4265212Z - 571876 - Info - Creating memory byte array dataset and provider from binary data file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-27T00:07:54.5358962Z - 571876 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-27T00:10:29.7239019Z - 571876 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-27T00:10:29.7239019Z - 571876 - Info - Creating memory byte array dataset and provider from binary data file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-27T00:10:29.8176524Z - 571876 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-27T00:12:25.2555285Z - 571876 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-27T00:12:25.2555285Z - 571876 - Info - Creating memory byte array dataset and provider from binary data file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-27T00:12:25.3492786Z - 571876 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-27T00:18:39.1006728Z - 571876 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-27T00:18:39.1006728Z - 571876 - Info - Creating memory byte array dataset and provider from binary data file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-27T00:18:39.1787979Z - 571876 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-27T00:29:49.5091068Z - 571876 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-27T00:29:49.5247313Z - 571876 - Info - Creating memory byte array dataset and provider from binary data file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-27T00:29:49.6028569Z - 571876 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-27T00:31:53.9782621Z - 571876 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-27T00:31:53.9938871Z - 571876 - Info - Creating memory byte array dataset and provider from binary data file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-27T00:31:54.0720122Z - 571876 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-27T00:38:47.5264847Z - 571876 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-27T00:38:47.5264847Z - 571876 - Info - Creating memory byte array dataset and provider from binary data file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-27T00:38:47.6202348Z - 571876 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-28T19:33:38.0587443Z - 968616 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-28T19:33:38.0743692Z - 968616 - Info - Creating memory byte array dataset and provider from binary data file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-28T19:33:38.3087447Z - 968616 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-28T19:36:35.3561971Z - 968616 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-28T19:36:35.3561971Z - 968616 - Info - Creating memory byte array dataset and provider from binary data file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-28T19:36:35.4499472Z - 968616 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-28T21:18:17.5402733Z - 968616 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-28T21:18:17.5402733Z - 968616 - Info - Creating memory byte array dataset and provider from binary data file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-28T21:18:17.6183985Z - 968616 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-28T21:20:26.6500686Z - 968616 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-28T21:20:26.6500686Z - 968616 - Info - Creating memory byte array dataset and provider from binary data file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-28T21:20:26.7438192Z - 968616 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-28T21:57:07.7874576Z - 968616 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-28T21:57:07.7874576Z - 968616 - Info - Creating memory byte array dataset and provider from binary data file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-28T21:57:07.9437084Z - 968616 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-28T22:48:15.8345265Z - 968616 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-28T22:48:15.8345265Z - 968616 - Info - Creating memory byte array dataset and provider from binary data file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-28T22:48:15.9126517Z - 968616 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-28T23:06:01.7911264Z - 968616 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-28T23:06:01.7911264Z - 968616 - Info - Creating memory byte array dataset and provider from binary data file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-28T23:06:01.8848760Z - 968616 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-28T23:12:23.8704943Z - 968616 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-28T23:12:23.8704943Z - 968616 - Info - Creating memory byte array dataset and provider from binary data file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-28T23:12:23.9642448Z - 968616 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-29T00:02:08.1858807Z - 968616 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-29T00:02:08.1858807Z - 968616 - Info - Creating memory byte array dataset and provider from binary data file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-29T00:02:08.2796307Z - 968616 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-29T00:23:52.1853728Z - 968616 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-29T00:23:52.2009973Z - 968616 - Info - Creating memory byte array dataset and provider from binary data file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-29T00:23:52.2634971Z - 968616 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-29T00:24:32.9511301Z - 968616 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-29T00:24:32.9511301Z - 968616 - Info - Creating memory byte array dataset and provider from binary data file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-29T00:24:33.0292552Z - 968616 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'D:\igxsites\v90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-29T16:45:37.3074653Z - 2536 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-29T16:45:37.3109680Z - 2536 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-29T16:45:37.5992027Z - 2536 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-29T16:56:27.1535043Z - 2536 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-29T16:56:27.1560059Z - 2536 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-29T16:56:27.2770926Z - 2536 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-29T17:28:58.6416628Z - 2536 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-29T17:28:58.6466668Z - 2536 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-29T17:28:58.9703972Z - 2536 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-29T17:31:13.7900296Z - 2536 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-29T17:31:13.7930308Z - 2536 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-29T17:31:13.9171187Z - 2536 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-29T17:55:25.4487804Z - 2536 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-29T17:55:25.4532839Z - 2536 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-29T17:55:25.8656923Z - 2536 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-29T18:34:36.2018754Z - 2536 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-29T18:34:36.2058787Z - 2536 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-29T18:34:36.3124558Z - 2536 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T15:59:13.6019202Z - 2536 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-30T15:59:13.6079240Z - 2536 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T15:59:13.9176449Z - 2536 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T17:13:52.8292330Z - 2536 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-30T17:13:52.8342563Z - 2536 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T17:13:53.2134832Z - 2536 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T17:31:05.9749781Z - 2536 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-30T17:31:05.9779807Z - 2536 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T17:31:06.1576079Z - 2536 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T17:36:35.5108176Z - 2536 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-30T17:36:35.5163217Z - 2536 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T17:36:35.7119609Z - 2536 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T19:31:21.6633909Z - 2536 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-30T19:31:21.6673939Z - 2536 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T19:31:22.3108730Z - 2536 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T20:53:31.1704601Z - 2536 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-30T20:53:31.1749626Z - 2536 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T20:53:31.3490868Z - 2536 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T20:58:27.0571483Z - 2536 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-30T20:58:27.0631531Z - 2536 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T20:58:27.2527892Z - 2536 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T21:18:06.7824035Z - 2536 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-30T21:18:06.7869065Z - 2536 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T21:18:06.9545277Z - 2536 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T21:55:02.1494468Z - 2536 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-30T21:55:02.1544513Z - 2536 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T21:55:02.3485904Z - 2536 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T21:55:59.7047229Z - 2536 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-30T21:55:59.7097270Z - 2536 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T21:55:59.9939299Z - 2536 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T22:07:51.0360473Z - 2536 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-30T22:07:51.0405508Z - 2536 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T22:07:51.1896575Z - 2536 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T22:08:23.3013420Z - 2536 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-30T22:08:23.3053454Z - 2536 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T22:08:23.7191426Z - 2536 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T22:13:33.0488230Z - 2536 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-30T22:13:33.0608316Z - 2536 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-30T22:13:33.2504682Z - 2536 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-31T16:56:14.0895553Z - 2536 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-31T16:56:14.0950585Z - 2536 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-31T16:56:14.7184985Z - 2536 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-31T17:33:02.7174452Z - 2536 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-31T17:33:02.7214490Z - 2536 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-31T17:33:02.9335992Z - 2536 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-31T20:30:01.4842278Z - 11360 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-01-31T20:30:01.4882302Z - 11360 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-01-31T20:30:01.7937715Z - 11360 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-01T19:47:33.2079822Z - 11360 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-01T19:47:33.2124856Z - 11360 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-01T19:47:33.9039768Z - 11360 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-01T21:31:10.3392966Z - 2244 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-01T21:31:10.3423001Z - 2244 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-01T21:31:10.7340237Z - 2244 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-01T21:53:51.2240516Z - 2244 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-01T21:53:51.2275543Z - 2244 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-01T21:53:51.4231934Z - 2244 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T16:48:25.0201260Z - 2244 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-02T16:48:25.0241293Z - 2244 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T16:48:25.3098558Z - 2244 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T17:23:42.1615306Z - 2244 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-02T17:23:42.1645342Z - 2244 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T17:23:42.2541210Z - 2244 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T17:54:29.8576985Z - 2244 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-02T17:54:29.8622019Z - 2244 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T17:54:30.4490794Z - 2244 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T17:56:20.0102061Z - 2244 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-02T17:56:20.0152097Z - 2244 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T17:56:20.1888331Z - 2244 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T18:00:06.8907351Z - 2244 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-02T18:00:06.8937372Z - 2244 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T18:00:06.9948208Z - 2244 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T19:40:03.0573189Z - 2244 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-02T19:40:03.0613222Z - 2244 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T19:40:03.1651906Z - 2244 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T19:41:05.6027156Z - 2244 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-02T19:41:05.6057191Z - 2244 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T19:41:05.7042741Z - 2244 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T19:43:04.0592765Z - 2244 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-02T19:43:04.0622800Z - 2244 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T19:43:04.4593165Z - 2244 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T19:44:33.1679749Z - 2244 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-02T19:44:33.1709761Z - 2244 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T19:44:33.2630453Z - 2244 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T19:47:19.2077071Z - 2244 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-02T19:47:19.2107097Z - 2244 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T19:47:19.4408908Z - 2244 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T19:48:24.4095254Z - 2244 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-02T19:48:24.4125275Z - 2244 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T19:48:24.5106006Z - 2244 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T19:50:35.4921683Z - 2244 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-02T19:50:35.4956711Z - 2244 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T19:50:35.6652911Z - 2244 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T19:50:41.2545670Z - 2244 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-02T19:50:41.2585704Z - 2244 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T19:50:41.3803288Z - 2244 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T19:51:46.7211906Z - 2244 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-02T19:51:46.7251939Z - 2244 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T19:51:46.8647935Z - 2244 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T22:11:20.7932060Z - 2244 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-02T22:11:20.7977089Z - 2244 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-02T22:11:21.2365211Z - 2244 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-03T15:13:47.9902751Z - 2484 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-03T15:13:47.9932777Z - 2484 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-03T15:13:48.2572469Z - 2484 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-03T16:01:29.8226094Z - 2484 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-03T16:01:29.8256116Z - 2484 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-03T16:01:29.9151797Z - 2484 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-03T16:02:52.9623168Z - 2484 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-03T16:02:52.9653156Z - 2484 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-03T16:02:53.0572528Z - 2484 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-03T18:00:00.8589503Z - 2484 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-03T18:00:00.8619515Z - 2484 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-03T18:00:00.9457272Z - 2484 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-03T19:37:25.4359002Z - 2484 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-03T19:37:25.4389039Z - 2484 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-03T19:37:25.5244036Z - 2484 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-07T21:16:30.6850354Z - 20396 - Info - Creating data set from 'FiftyOne.Foundation' version '3.2.11.1'
+2017-02-07T21:16:30.6940441Z - 20396 - Info - Creating memory byte array dataset and provider from binary data file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.
+2017-02-07T21:16:31.3231056Z - 20396 - Info - Created provider from version '3.1.0.0' format 'PremiumV3' data published on '2015-01-14 00:00:00Z' in master file 'C:\igxsites\cms90\tnav9\site\DSS_Preview\App_Data\IGX.mobi.dat'.

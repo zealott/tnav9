@@ -1,0 +1,166 @@
+﻿@import url("PageBuilderCustom.less");
+
+/*@PageBuilderGridColumns: 12;
+@PageBuilderGridGutterWidth:    2.127659574%;
+
+//the grid column width is 100% minus the cutter times colums minus one, divided by columns. 
+//Cutter width is fixed to same percentage
+@PageBuilderGridColumnWidth:    (100%-(@PageBuilderGridGutterWidth * (@PageBuilderGridColumns - 1))) / @PageBuilderGridColumns;*/
+
+@MediumGridName: md;
+@SmallGridName: sm;
+@NoWrapGridName: xs;
+
+    .colWidth (@columns) {
+      width: (@PageBuilderGridColumnWidth * @columns) + (@PageBuilderGridGutterWidth * (@columns - 1));
+    }
+
+    .generate_columns (@index, @gridSize) when (@index > 0) {
+      html .pageBuilderLayout .row .col-@{gridSize}-@{index} { 
+		  .colWidth(@index); 
+      }
+      .generate_columns(@index - 1, @gridSize);
+    }
+
+html .pageBuilderLayoutDesign {
+	border: 2px dotted #a9a9eb;
+	padding-bottom: 50px !important;
+}
+
+html .pageBuilderChildLayoutDesign {
+	border: 2px dotted #a9a9eb !important;
+	padding-bottom: 30px !important;
+}
+
+html .pageBuilderLayoutDesignHilite {
+	border: 2px solid #1414a5;
+}
+
+html .pageBuilderLayout .row {
+	padding: 6px;
+	margin: 3px;
+}
+
+html .autoMargin {
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+html .pageBuilderLayoutDesign .pagePresentationLayoutRow {
+	border: 1px dashed #8181ea;
+	background-color: #d5d5ed;
+	padding: 5px;
+	-moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+	-webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+	transition: border linear 0.2s, box-shadow linear 0.2s;
+}
+
+html .pageBuilderLayoutDesign .dragPlaceHolder {
+	border: 1px solid #1414a5;
+	padding: 0px;
+	background-color: #3f3fae;
+	margin: 2px 0px;
+	border-collapse: collapse;
+	width: 100%;
+	-moz-transition: all linear 0.2s;
+	-webkit-transition: all linear 0.2s;
+	transition: all linear 0.2s;
+	box-shadow: 0 0 5px 0 #1414a5;
+	clear: both;
+}
+
+html .pageBuilderLayout .row .pagePresentationLayoutColumn {
+	padding: 6px;
+}
+
+html .pageBuilderLayoutDesign .pagePresentationLayoutRow .pagePresentationLayoutColumn {
+	border: 1px dashed #a9a9eb;
+	background-color: #eeeeff;
+	padding: 5px;
+	-moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+	-webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+	transition: border linear 0.2s, box-shadow linear 0.2s;
+	min-height: 30px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html .pageBuilderLayout .row .pagePresentationContentUnit {
+	max-width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	min-height:5px; //in case empty content, leave it for at least 5px;
+}
+
+html .pageBuilderLayoutDesign .pagePresentationLayoutRow .pagePresentationContentUnit {
+	-moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+	-o-transition: border linear 0.2s, box-shadow linear 0.2s;
+	-webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+	transition: border linear 0.2s, box-shadow linear 0.2s;
+	border: 1px dotted gray;
+}
+
+html .pageBuilderLayoutDesign .selectedContainer, html .pageBuilderLayoutDesign .pagePresentationLayoutRow .selectedContainer {
+	border: 1px solid #1414a5;
+	box-shadow: 0 0 5px 0 #1414a5;
+}
+
+html .pageBuilderLayoutDesign .pagePresentationLayoutRow .contentUnitHilite {
+	padding: 4px;
+	border: 2px solid #a9a9eb;
+}
+
+html .selectedContentContainer {
+	border: 2px solid #3f3fae !important;
+	padding: 2px !important;
+	background-color: #eeeeff;
+}
+
+
+@media (min-width: 992px) {
+
+	.generate_columns (@PageBuilderGridColumns, @MediumGridName);
+
+	html .pageBuilderLayout .row [class*="col-md-"] {
+		margin-left: 2.127659574468085%;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+}
+
+@media (min-width: 768px) {
+
+	.generate_columns (@PageBuilderGridColumns, @SmallGridName);
+
+	html .pageBuilderLayout .row [class*="col-sm-"] {
+		margin-left: 2.127659574468085%;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+}
+
+	.generate_columns (@PageBuilderGridColumns, @NoWrapGridName);
+
+	html .pageBuilderLayout .row [class*="col-xs-"] {
+		margin-left: 2.127659574468085%;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+
+html .pageBuilderLayout .row [class*="col-md-"]:first-child,
+html .pageBuilderLayout .row [class*="col-sm-"]:first-child,
+html .pageBuilderLayout .row [class*="col-xs-"]:first-child
+{
+	margin-left: 0;
+}
+
+
+html .pageBuilderLayout .row-fluid {
+	width: auto;
+	margin: 3px;
+}

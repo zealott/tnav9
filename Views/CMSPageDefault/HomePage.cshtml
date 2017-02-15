@@ -1,0 +1,148 @@
+﻿
+@model Ingeniux.Runtime.CMSPageRequest
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+@using Ingeniux.Runtime
+@if (Model != null)
+{
+	string personalizedCategory = _Functions.GetMarketingCookie();
+	int iPersonalizedCategory = 0;
+	List<ICMSElement> defaultBanners = Model.Elements("SlideshowComponent").ToList();  
+	List<ICMSLinkElement> personalizedBanners = Model.GetNavigationItems("PersonalizedBanners", NavigationElementType.Navigation, false, true).Where(elt => elt.Schema == "SlideshowComponent").ToList();
+	List<ICMSLinkElement> filteredbanners = new List<ICMSLinkElement>();
+	List<ICMSElement> designationTileRows = Model.Elements("DesignationTileRow").ToList();
+	ICMSElement resourcesHeading = Model.Element("ResourcesHeading");
+	ICMSElement columnHeading1 = Model.Element("ColumnHeading1");
+	ICMSElement columnHeading2 = Model.Element("ColumnHeading2");
+	ICMSElement columnHeading3 = Model.Element("ColumnHeading3");
+	List<ICMSLinkElement> column1Links = Model.GetLinkItems("ColumnLink1").ToList();
+	List<ICMSLinkElement> column2Links = Model.GetLinkItems("ColumnLink2").ToList();
+	List<ICMSLinkElement> column3Links = Model.GetLinkItems("ColumnLink3").ToList();
+
+	List<ICMSElement> column1items = Model.Elements(null, "Column1").ToList();
+	List<ICMSElement> column2items = Model.Elements(null, "Column2").ToList();
+	List<ICMSElement> column3items = Model.Elements(null, "Column3").ToList();
+
+	if (!string.IsNullOrWhiteSpace(personalizedCategory))
+	{
+		if (Int32.TryParse(personalizedCategory, out iPersonalizedCategory))
+		{
+			if (iPersonalizedCategory >= 5)
+			{
+				filteredbanners = personalizedBanners.Where(elt => elt.CategoryIds.Any(alt => alt.EqualsIgnoreCase(iPersonalizedCategory.ToString()))).ToList();
+			}
+		}
+	}
+
+	if (!filteredbanners.Any())
+	{
+		if (defaultBanners.Any())
+		{
+			<div class="rotating-hero-holder">
+				@foreach (var defaultBanner in defaultBanners)
+				{
+					Html.RenderPartial("Components/SlideshowComponent", defaultBanner);
+						
+				}
+			</div>
+		}
+	}
+	else
+	{
+		<div class="rotating-hero-holder">
+			@foreach (var filteredBanner in filteredbanners)
+			{
+				Html.RenderPartial("Other/FilteredBanners", filteredBanner);
+			}
+		</div>		
+	}
+
+
+	if (designationTileRows.Any())
+	{
+		<div class="grey-background">
+			<div class="container just-for-ipad">
+				<div class="row">
+					<div class="col-xs-12 col-xs-no-pad">
+						@foreach (var designationTileRow in designationTileRows)
+						{
+							<div class="designation-tile-row">
+								@{
+									List<ICMSElement> tiles = designationTileRow.Elements(null, "DesignationTile").ToList();
+									foreach (var tile in tiles)
+									{
+										Html.RenderPartial("Components/" + tile.RootElementName, tile);
+									}
+								}
+							</div>
+						}
+					</div>
+				</div><!-- Row -->
+			</div><!-- Container -->
+		</div><!-- Grey Background -->
+	}
+	<section>
+		<div class="container">
+			<div class="row">
+
+				<h2 @_Helpers.RenderICEAttribute(resourcesHeading)>@Html.Raw(resourcesHeading.Value)</h2>
+
+				<div class="col-xs-12 col-sm-4">
+
+					<ul class="resource-list turquoise-list">
+						<li @_Helpers.RenderICEAttribute(columnHeading1)>@Html.Raw(columnHeading1.Value)</li>
+						@_Helpers.RenderCMSLinkList(column1Links, Url)
+					</ul>
+
+				</div>
+
+				<div class="col-xs-12 col-sm-4">
+
+					<ul class="resource-list blue-list">
+						<li @_Helpers.RenderICEAttribute(columnHeading2)>@Html.Raw(columnHeading2.Value)</li>
+						@_Helpers.RenderCMSLinkList(column2Links, Url)
+					</ul>
+
+				</div>
+
+				<div class="col-xs-12 col-sm-4">
+
+					<ul class="resource-list dark-blue-list">
+						<li @_Helpers.RenderICEAttribute(columnHeading3)>@Html.Raw(columnHeading3.Value)</li>
+						@_Helpers.RenderCMSLinkList(column3Links, Url)
+					</ul>
+
+				</div>
+
+			</div><!-- Row-->
+		</div><!-- Container -->
+	</section>
+	
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="highlight-section">
+					<div class="col-xs-12 col-sm-4">
+						@foreach (var item in column1items)
+						{
+							Html.RenderPartial("Components/" + item.RootElementName, item);
+						}
+					</div>
+					<div class="col-xs-12 col-sm-4">
+						@foreach (var item in column2items)
+						{
+							Html.RenderPartial("Components/" + item.RootElementName, item);
+						}
+					</div>
+					<div class="col-xs-12 col-sm-4">
+						@foreach (var item in column3items)
+						{
+							Html.RenderPartial("Components/" + item.RootElementName, item);
+						}
+					</div>
+				</div>
+			</div><!-- Row -->
+		</div><!-- Container -->		
+	</section>
+}

@@ -1,0 +1,7 @@
+﻿@model Ingeniux.Runtime.ICMSElement
+@using Ingeniux.Runtime
+@{	
+	<span @_Helpers.RenderICEAttribute(Model)>
+		@Html.Raw(Model.Content.Value)
+	</span>
+}

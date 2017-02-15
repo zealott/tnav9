@@ -1,0 +1,128 @@
+﻿@model Ingeniux.Runtime.ICMSEnvironment
+@using Ingeniux.Runtime
+
+@{
+	var page = Model as CMSPageRequest;
+    var siteControl = _Functions.GetSiteControl(page);
+}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	@* StartSEO and title element handling *@
+	@if (page != null)
+    {
+        // Most pages get their title from the CMS's edit form
+        String BrowserTitleBar = page.GetElementValue("BrowserBarTitle");
+        String MetaDescription = page.GetElementValue("MetaDescription");
+        String Title = page.GetElementValue("Title");
+        String Abstract = page.GetElementValue("Abstract");
+        String titleBar = !String.IsNullOrWhiteSpace(BrowserTitleBar) ? BrowserTitleBar : Title;
+        String meta = !String.IsNullOrWhiteSpace(MetaDescription) ? MetaDescription : Abstract;
+        String thisPageUrl = _Functions.ThisPageUrl(page, Url);
+        
+		
+
+        <title>@titleBar</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="@meta" />
+        <meta name="keywords" content="@page.GetElementValue("MetaKeywords")" />
+	
+        List<String> robots = new List<String>();
+        if (page.GetElementValue("NoFollow") == "true")
+        {
+	        robots.Add("nofollow");
+        }
+        if (page.GetElementValue("NoIndex") == "true")
+        {
+	        robots.Add("noindex");
+        }
+        if (page.GetElementValue("NoODP") == "true")
+        {
+	        robots.Add("noodp");
+        }
+		<meta name="robots" content="@robots.JoinString(",")" />
+     }
+    @* End SEO and title element *@
+
+    @* Start base tag handling code *@
+    @if (!(page != null && page.IsPreview))
+    {
+        var baseHref = Request.Url.Scheme + "://" + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port.ToString()) + Request.ApplicationPath;
+        
+        if (!baseHref.EndsWith("/"))
+        {
+            baseHref += "/";
+        }
+
+        <base href="@baseHref" />
+    }
+ 
+    @* End base tag handling *@
+
+    @* Start CSS and script includes *@
+		<link rel="shortcut icon" href="favicon.png" />
+
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans:300,400,700">
+
+	
+	<link rel="stylesheet" href="@Url.Asset("prebuilt/css/sumoselect.css", Model)">
+	<link rel="stylesheet" href="@Url.Asset("prebuilt/css/bootstrap.css", Model)">
+	<link rel="stylesheet" href="@Url.Asset("prebuilt/css/bootstrap-theme.min.css", Model)">
+	<link rel="stylesheet" href="@Url.Asset("prebuilt/css/font-awesome.min.css", Model)">
+	<link rel="stylesheet" href="@Url.Asset("prebuilt/css/slickRotator.css", Model)">
+	<link rel="stylesheet" href="@Url.Asset("prebuilt/css/main.css", Model)">
+
+	<script src="@Url.Asset("prebuilt/js/jQuery_2.2.4.js", Model)"></script>
+	<script src="@Url.Asset("prebuilt/js/bootstrap.min.js", Model)"></script>
+	<script src="@Url.Asset("prebuilt/js/slick.min.js", Model)"></script>
+	<script src="@Url.Asset("prebuilt/js/siteJS.js", Model)"></script>
+	<script src="@Url.Asset("prebuilt/js/select.js", Model)"></script>
+	<script src="@Url.Asset("prebuilt/js/jquery.sumoselect.min.js", Model)"></script>
+	<script src="@Url.Asset("prebuilt/js/igx-dev.js", Model)"></script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools --> 
+	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-588cf1556bbcbeb7"></script> 
+
+	    
+        @if (!string.IsNullOrWhiteSpace(page.GetElementValue("HeadScript")))
+        {
+            Html.Raw(page.GetElementValue("HeadScript"));
+        }
+        @if (siteControl != null)
+        {
+            Html.Raw(siteControl.GetElementValue("HeaderScripts"));
+        }
+	@* End CSS and script includes *@
+</head>
+	@{
+		if  (page != null)
+		{
+			string bodyClass = "";
+			Dictionary<string, string> pagetypes = new Dictionary<string, string>();
+			pagetypes.Add("NewsFront", "news-front-page");
+			pagetypes.Add("NewsDetail", "news-detail-page");
+			pagetypes.Add("HomePage", "home-page");
+			pagetypes.Add("FAQ", "program-page");
+			pagetypes.Add("CourseDetail", "course-detail-page");
+			pagetypes.Add("ProductDetail", "product-detail-page");
+			pagetypes.Add("LoginPage", "login-page");
+			pagetypes.TryGetValue((Model as CMSPageRequest).RootElementName, out bodyClass);
+
+			<body class="@bodyClass">
+				@RenderBody()
+			</body>
+		}
+ 
+	    if (!string.IsNullOrWhiteSpace(page.GetElementValue("FooterScript")))
+        {
+            Html.Raw(page.GetElementValue("FooterScript"));
+        }
+        
+        if (siteControl != null)
+        {
+            Html.Raw(siteControl.GetElementValue("FooterScripts"));
+        }
+
+        @RenderSection("bottom", false)
+    }
+</html>

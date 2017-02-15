@@ -1,0 +1,193 @@
+﻿@model Ingeniux.Runtime.CMSPageRequest
+@{
+	Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+@using Ingeniux.Runtime
+@if (Model != null)
+{
+	ICMSElement title = Model.Element("Title");
+	ICMSElement mainImage = Model.Element("MainImage");
+	ICMSElement mainImageCaption = Model.Element("MainImageCaption");
+	ICMSElement bodyCopy = Model.Element("BodyCopy");
+
+
+	List<ICMSNavigatingCategory> relatedCategories = _Functions.GetChildCategories(Model.Page, "RelatedNewsCategories", true, false);
+
+	//could contain *n* news articles
+	List<ICMSLinkElement> allNews = Model.GetNavigationItems("AllNews", NavigationElementType.Navigation, true, true).Where(elt => elt.Schema == "NewsDetail").ToList();
+	ICMSElement relatedNewsHeading = Model.Element("RelatedNewsHeading");
+	//marketing categories that this page is tagged as.
+
+	IEnumerable<ICMSCategory> thisPageNewsCategories = Model.Categories.Where(elt => relatedCategories.Any(alt => alt.ID == elt.ID));
+	var thisPageRelatedNews = allNews.Where(elt => elt.CategoryIds.Any(alt => thisPageNewsCategories.Any(balt => balt.ID == alt)));
+
+
+
+	<div class="page-title blue-background center-container">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-xs-12 col-xs-offset-0 col-md-offset-2 col-md-8">
+					@{
+						Html.RenderPartial("Editable/Title", title);
+					}
+				</div>
+
+			</div>
+			<!-- Row -->
+		</div>
+		<!-- Container -->
+	</div>
+
+	<section>
+		<div class="container">
+			<div class="row">
+
+				<div class="col-xs-12 col-sm-2">
+					<div class="mobile-trigger"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;News Menu</div>
+					<ul class="left-nav">
+						<li><a href="#"><strong>News</strong></a></li>
+						<li><a href="#">News Archive</a></li>
+					</ul>
+				</div>
+
+				<div class="col-xs-12 col-sm-8">
+					@if (!string.IsNullOrWhiteSpace(mainImage.Value))
+					{
+					<div class="news-detial-img-holder">
+						@_Helpers.RenderImage(mainImage, Url)
+						@if (!string.IsNullOrWhiteSpace(mainImageCaption.Value))
+						{
+							<div class="news-detial-img-text">
+								<p>@Html.Raw(mainImageCaption.Value)</p>
+							</div>
+						}
+					</div>
+					}
+					@{
+						Html.RenderPartial("Editable/BodyCopy", bodyCopy);
+					}
+				</div>
+
+				<div class="col-xs-12 col-sm-2">
+					<ul class="right-nav">
+						@{
+							Html.RenderPartial("PageLayout/Share", Model);
+						}
+						@*<li><a href="#"><i class="fa fa-share" aria-hidden="true"></i>&nbsp;Share</a></li>
+						<li><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;Email</a></li>
+						<li><a href="#"><i class="fa fa-print" aria-hidden="true"></i>&nbsp;Print</a></li>*@
+					</ul>
+				</div>
+
+			</div>
+			<!-- Row -->
+		</div>
+		<!-- Container -->
+	</section>
+
+	<hr>
+	if (thisPageRelatedNews.Any())
+	{
+		<section>
+			<div class="container">
+				<div class="row">
+
+					<div class="col-xs-12">
+						@if (!string.IsNullOrWhiteSpace(relatedNewsHeading.Value))
+						{
+							<h2 @_Helpers.RenderICEAttribute(relatedNewsHeading)>@Html.Raw(relatedNewsHeading.Value)</h2>
+						}
+						
+						<div class="row targeted-news-stories-with-img">
+							@foreach (var thisPageRelated in thisPageRelatedNews)
+							{
+								<div class="targeted-news-story-holder col-xs-12 col-sm-6">
+									<h2>@Html.Raw(thisPageRelated.GetAttributeValue("Title"))</h2>
+									@if (!string.IsNullOrWhiteSpace(thisPageRelated.GetAttributeValue("PublicationDate")))
+									{
+										<p>@_Helpers.FormatDate(thisPageRelated.GetAttributeValue("PublicationDate"), "MMM d, yyyy")</p>
+									}
+									@_Helpers.RenderImage(thisPageRelated.GetAttributeValue("ReUseImage"), Url, "", thisPageRelated)
+									<p>@Html.Raw(thisPageRelated.GetAttributeValue("Abstract"))</p>
+								</div>					
+							}
+						</div>
+					</div>
+
+				</div>
+				<!-- Row -->
+			</div>
+			<!-- Container -->
+		</section>
+
+		<hr />
+	}
+	<section>
+		<div class="container">
+			<div class="row">
+
+				<div class="col-xs-12">
+
+					<h2>Related Courses</h2>
+
+					<div class="text-slider">
+						<div class="slider-item match-height-1">
+							<a href="#">
+								<p class="slider-date">October 12 - Novermber 2</p>
+								<p class="slider-main-title">Title Will Go Here</p>
+								<p class="slider-third-line">Place Name or
+									<br>
+									Type Name</p>
+							</a>
+						</div>
+
+						<div class="slider-item match-height-1">
+							<a href="#">
+								<p class="slider-date">October 12</p>
+								<p class="slider-main-title">Title Will Go Here</p>
+								<p class="slider-third-line">Place Name or Type Name</p>
+							</a>
+						</div>
+
+						<div class="slider-item match-height-1">
+							<a href="#">
+								<p class="slider-date">October 12</p>
+								<p class="slider-main-title">A Nice Long Title Will Go Here To Show Breaking</p>
+								<p class="slider-third-line">Place Name or Type Name</p>
+							</a>
+						</div>
+
+						<div class="slider-item match-height-1">
+							<a href="#">
+								<p class="slider-date">October 12</p>
+								<p class="slider-main-title">Title Will Go Here</p>
+								<p class="slider-third-line">Place Name or Type Name</p>
+							</a>
+						</div>
+
+						<div class="slider-item match-height-1">
+							<a href="#">
+								<p class="slider-date">October 12</p>
+								<p class="slider-main-title">Title Will Go Here</p>
+								<p class="slider-third-line">Place Name or Type Name</p>
+							</a>
+						</div>
+
+						<div class="slider-item match-height-1">
+							<a href="#">
+								<p class="slider-date">October 12</p>
+								<p class="slider-main-title">Title Will Go Here</p>
+								<p class="slider-third-line">Place Name or Type Name</p>
+							</a>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+			<!-- Row -->
+		</div>
+		<!-- Container -->
+	</section>
+}

@@ -1,0 +1,72 @@
+﻿@model Ingeniux.Runtime.CMSPageRequest
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml"; //renders html tag, head tag.
+}
+@using Ingeniux.Runtime
+@using Ingeniux.Runtime.Models
+@if (Model != null)
+{
+	List<ICMSNavigatingCategory> marketingCategories = _Functions.GetChildCategories(Model.Page, "MarketingCategories", true, true);
+	
+	List<String> myIdList = Session["myIdList"] as List<String> ?? new List<String>();
+	
+	//check to see if this page has already been incremented this session
+	if (!myIdList.Contains(Model.ID))
+	{
+		if (marketingCategories.Any())
+		{
+			//get page categories
+			var pageCategories = Model.Categories.Where(elt => marketingCategories.Any(alt => alt.ID == elt.ID));
+
+			//if any of these categfories match marketing codes
+			if (pageCategories.Any())
+			{
+				foreach (var pageCategory in pageCategories)
+				{
+					//check to see if cookie exists
+					if (Request.Cookies["IGXMarketing-" + pageCategory.ID] != null)
+					{
+						//if it does, increase the value by one
+						// update the cookie values
+						int newSurveyPage = _Functions.IntegerOrDefault(Request.Cookies["IGXMarketing-" + pageCategory.ID].Value, 0) + 1;
+						//int newSurveyPage = int.Parse(Request.Cookies["IGXMarketing-" + pageCategory.ID].Values["IGXMarketing-" + pageCategory.ID]) + 1;
+						Response.Cookies["IGXMarketing-" + pageCategory.ID].Value = newSurveyPage.ToString();
+						Response.Cookies["IGXMarketing-" + pageCategory.ID].Expires = DateTime.Now.AddDays(30d);
+					}
+					else
+					{
+						//else set cookie	
+						HttpCookie myCookie = new HttpCookie("IGXMarketing-" + pageCategory.ID);
+						myCookie.Value = "1";
+						myCookie.Expires = DateTime.Now.AddDays(30d);
+						Response.Cookies.Add(myCookie);
+					}					
+				}
+				//ID has already been incremented this session, dont want to double count on the session
+				myIdList.Add(Model.ID);
+				Session.Add("myIdList", myIdList);
+			}
+		}
+	}
+	
+	// Site layout code goes here.  Things that would typically handled by a Site Control.
+
+	var siteControl = Model.Element("SiteControl");
+    
+	if (siteControl != null)
+	{
+		Html.RenderPartial("PageLayout/Header", siteControl);
+	}
+    
+		@RenderBody()
+
+	if (siteControl != null)
+	{
+		Html.RenderPartial("PageLayout/Footer", siteControl);
+	}
+}
+
+@section bottom
+{
+	@RenderSection("bottom", false)
+}

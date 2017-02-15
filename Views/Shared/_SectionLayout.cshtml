@@ -1,0 +1,22 @@
+﻿@model Ingeniux.Runtime.CMSPageRequest
+@{	
+	Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+@using Ingeniux.Runtime
+@using Ingeniux.Runtime.Models
+@if (Model != null)
+{
+	ICMSNavigationElement breadcrumbs = Model.Page.GetNavigation("AncestorNavigation");
+	<div class="container">
+		<div class="mobile-side-menu">
+			<a class="mobile-side-menu-open" href="#"><i class="fa fa-bars"></i></a>
+		</div>
+		@{
+			Html.RenderPartial("PageLayout/Breadcrumbs", breadcrumbs);
+		}
+		<div class="row">
+			@RenderBody()
+		</div>
+	</div>
+	
+}

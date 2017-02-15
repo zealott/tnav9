@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <sectionGroup name="fiftyOne">
+      <section name="log" type="FiftyOne.Foundation.Mobile.Configuration.LogSection, FiftyOne.Foundation" requirePermission="false" allowDefinition="Everywhere" restartOnExternalChanges="false" allowExeDefinition="MachineToApplication" />
+      <section name="redirect" type="FiftyOne.Foundation.Mobile.Configuration.RedirectSection, FiftyOne.Foundation" requirePermission="false" allowDefinition="Everywhere" restartOnExternalChanges="false" allowExeDefinition="MachineToApplication" />
+      <section name="detection" type="FiftyOne.Foundation.Mobile.Detection.Configuration.DetectionSection, FiftyOne.Foundation" requirePermission="false" allowDefinition="Everywhere" restartOnExternalChanges="false" allowExeDefinition="MachineToApplication" />
+    </sectionGroup>
+    <section name="runtimeAuthSettings" type="Ingeniux.Runtime.RuntimeAuth.RuntimeAuthenticationSettings, AuthenticatorPlugin" />
+    <section name="dotless" type="dotless.Core.configuration.DotlessConfigurationSectionHandler, dotless.Core" />
+  </configSections>
+  <fiftyOne>
+    <log logFile="~/App_Data/Log.txt" logLevel="Info" />
+    <detection binaryFilePath="~/App_Data/IGX.mobi.dat" autoUpdate="false" shareUsage="false" enabled="false" memoryMode="true" />
+  </fiftyOne>
+  <!-- RuntimeAuth Settings -->
+  <runtimeAuthSettings enabled="false" allowMediaStreamingInProtectedFolders="false" allowedRequestIPs="" auth_backgroundAuthentication="false" auth_failureMessage="Authentication Failed. Invalid User Name or Password." auth_passwordFieldName="pass" auth_userFieldName="user" authenticationPageList="x191.xml" binaryDownloadPage="" forbiddenFolders="settings" forbiddenFoldersResponsePage="x13.xml" homePage="x11.xml" loginHandlerPageMockup="login" loginPagePath="x192.xml" logoutHandlerPageMockup="logout" protectedBinaryFolders="documents/secured" redirectionQueryStringName="redir">
+    <plugins>
+      <add name="ADAuthPlugin.dll" />
+    </plugins>
+  </runtimeAuthSettings>
+  <appSettings>
+    <clear />
+    <add key="webpages:Version" value="3.0.0.0" />
+    <!-- prevent null reference error in fire and forget tasks joining main thread, while main thread already finished-->
+    <add key="aspnet:UseTaskFriendlySynchronizationContext" value="true" />
+    <add key="owin:AutomaticAppStartup" value="false" />
+    <add key="PreserveLoginUrl" value="true" />
+    <add key="ClientValidationEnabled" value="true" />
+    <add key="UnobtrusiveJavaScriptEnabled" value="true" />
+    <add key="EnableTFRMParameter" value="true" />
+    <add key="DesignTimeAssetsLocation" value="" />
+    <add key="CacheSiteControls" value="true" />
+    <add key="SiteControlSchemas" value="SiteControl;SectionControl;SiteControlComponent" />
+    <add key="LegacyRendering" value="true" />
+    <!-- 3 choices for table handling: AsTablet, AsMobile, AsDesktop, not case sensitive-->
+    <add key="TabletHandling" value="AsMobile" />
+    <!-- logging settings -->
+    <add key="Log_MaxArchiveFiles" value="1000" />
+    <!-- bypass mobile routing cookie setting-->
+    <add key="MobileViewBypassCookieName" value="Bypass_Mobile_View" />
+    <add key="PreviewContentStoreEmbedded" value="false" />
+    <!-- the cookies that will cause cache variation on different value -->
+    <add key="CacheVariationCookieNames" value="site;region" />
+    <!-- by default, Dss will copy all stylesheets to App_Data\_dss_temp_stylesheets_ folder to avoid file locking during publishing/replication
+         set to false to disable this feature and directly use xslt in Stylesheets folder -->
+    <add key="UseTempStylesheetsLocation" value="true" />
+    <!-- Turn off DSS self-sustained navigation building-->
+    <add key="DependencyMode" value="false" />
+    <!-- The duration of checking for navigation cache on disk in dependency mode-->
+    <add key="DependencyModeNavCacheDuration" value="60" />
+    <!-- Keep memory footprint to lowest. Affect performance of DSS right after publishes-->
+    <add key="TightMemoryControl" value="false" />
+    <!-- The delay to clean up memory after each publish, under tight memory control-->
+    <add key="MemoryCleanupDelay" value="15" />
+    <!-- The max number of thread to be use to perform background navigation building. Default to twice of CPU cores count-->
+    <add key="NavBuildThreadPoolLimit" value="" />
+    <add key="PageFilesLocation" value="D:\igxsites\v90\tnav9\site\App_Data\xml" />
+  </appSettings>
+  <location path="." inheritInChildApplications="false">
+    <system.web>
+      <httpRuntime requestValidationMode="2.0" />
+      <compilation debug="true" targetFramework="4.5.2">
+        <assemblies>
+          <add assembly="System.Web.Abstractions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+          <add assembly="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+          <add assembly="System.Web.Routing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+          <add assembly="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+          <add assembly="System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        </assemblies>
+      </compilation>
+      <!-- added for IIS6 so the preview does not get the handlers from it's parent -->
+      <httpHandlers>
+        <clear />
+        <add path="*.less" verb="GET" type="dotless.Core.LessCssHttpHandler, dotless.Core" />
+      </httpHandlers>
+      <authentication mode="Forms">
+        <forms loginUrl="~/Account/LogOn" timeout="2880" name="IngeniuxAuth" path="/" />
+      </authentication>
+      <sessionState mode="InProc" cookieless="UseCookies" timeout="30" cookieName="IGXSessionState" />
+      <authorization>
+        <allow users="?" />
+      </authorization>
+      <pages controlRenderingCompatibilityVersion="4.0">
+        <namespaces>
+          <add namespace="System.Web.Helpers" />
+          <add namespace="System.Web.Mvc" />
+          <add namespace="System.Web.Mvc.Ajax" />
+          <add namespace="System.Web.Mvc.Html" />
+          <add namespace="System.Web.Routing" />
+          <add namespace="System.Web.WebPages" />
+        </namespaces>
+      </pages>
+      <customErrors mode="Off" />
+      <!-- set the machine key to be the same for both validation and description to match the design time site.  This is the way for DssPreview to share auth session with parent CMS MVC site
+        This entry can be removed for runtime dss site.
+      -->
+      <machineKey compatibilityMode="Framework45" decryption="AES" validation="SHA1" decryptionKey="C7C731D64AAE26CDC6691216C00F37EF19016FE8447ACCF0" validationKey="C50B3C89CB21F4F1422FF158A5B42D0E8DB8CB5CDA1742572A487D9401E3400267682B202B746511891C1BAF47F8D25C07F6C39A104696DB51F17C529AD3CABE" />
+    </system.web>
+  </location>
+  <system.codedom>
+    <compilers>
+      <compiler language="c#;cs;csharp" extension=".cs" warningLevel="4" type="Microsoft.CSharp.CSharpCodeProvider, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+        <providerOption name="CompilerVersion" value="v4.0" />
+        <providerOption name="WarnAsError" value="false" />
+      </compiler>
+      <compiler language="vb;vbs;visualbasic;vbscript" extension=".vb" compilerOptions="/d:Trace=true" type="Microsoft.VisualBasic.VBCodeProvider, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+        <providerOption name="OptionInfer" value="true" />
+        <providerOption name="WarnAsError" value="false" />
+        <providerOption name="CompilerVersion" value="v4.0" />
+      </compiler>
+    </compilers>
+  </system.codedom>
+  <system.webServer>
+    <validation validateIntegratedModeConfiguration="false" />
+    <modules runAllManagedModulesForAllRequests="true" />
+    <handlers>
+      <remove name="dotless" />
+      <remove name="ExtensionlessUrlHandler-Integrated-4.0" />
+      <remove name="OPTIONSVerbHandler" />
+      <remove name="TRACEVerbHandler" />
+      <add name="ExtensionlessUrlHandler-Integrated-4.0" path="*." verb="*" type="System.Web.Handlers.TransferRequestHandler" preCondition="integratedMode,runtimeVersionv4.0" />
+      <add name="dotless" path="*.less" verb="GET" type="dotless.Core.LessCssHttpHandler,dotless.Core" resourceType="File" preCondition="" />
+    </handlers>
+    <!-- http errors has to be set on pass through mode for custom 404 page to work on remote servers-->
+    <httpErrors existingResponse="PassThrough" />
+  </system.webServer>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="HtmlAgilityPack" publicKeyToken="bd319b19eaf3b43a" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.4.9.5" newVersion="1.4.9.5" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Owin" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.1.0" newVersion="3.0.1.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Owin.Security" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.1.0" newVersion="3.0.1.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="WebGrease" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.6.5135.21930" newVersion="1.6.5135.21930" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Antlr3.Runtime" publicKeyToken="eb42632606e9261f" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.5.0.2" newVersion="3.5.0.2" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-9.0.0.0" newVersion="9.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Net.Http.Formatting" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.0.0" newVersion="4.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Http" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.0.0" newVersion="4.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Helpers" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.WebPages" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-5.2.3.0" newVersion="5.2.3.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="MoreLinq" publicKeyToken="384d532d7e88985d" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.4.18916.0" newVersion="1.4.18916.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="NLog" publicKeyToken="5120e14c03d0593c" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.0.0" newVersion="4.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Ingeniux.Search" publicKeyToken="4a949968764df20e" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.2.2.0" newVersion="2.2.2.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="AutoMapper" publicKeyToken="be96cd2c38ef1005" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.2.0.0" newVersion="5.2.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="log4net" publicKeyToken="669e0ddf0bb1aa2a" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.0.6.0" newVersion="2.0.6.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Ingeniux.CMS.CSAPI" publicKeyToken="1b3b2e95d16e0add" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-9.0.512.0" newVersion="9.0.512.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Raven.Abstractions" publicKeyToken="37f41c7f99471593" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.5.3.0" newVersion="3.5.3.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Raven.Client.Lightweight" publicKeyToken="37f41c7f99471593" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.5.3.0" newVersion="3.5.3.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Ingeniux.CMS.Common" publicKeyToken="1b3b2e95d16e0add" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-9.0.467.0" newVersion="9.0.467.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+  <connectionStrings>
+    <add name="PreviewContentStore" connectionString="http://localhost/tnav9/ContentStore/" />
+  </connectionStrings>
+  <!--
+    For a description of web.config changes for .NET 4.5 see http://go.microsoft.com/fwlink/?LinkId=235367.
+
+    The following attributes can be set on the <httpRuntime> tag.
+      <system.Web>
+        <httpRuntime targetFramework="4.5"/>
+      </system.Web>
+  -->
+  <dotless minifyCss="false" cache="true" web="false" strictMath="false" />
+</configuration>

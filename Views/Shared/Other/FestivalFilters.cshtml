@@ -1,0 +1,145 @@
+﻿@model Ingeniux.Runtime.CMSPageRequest
+@using Ingeniux.Runtime
+@{	
+    
+    IEnumerable<ICMSLinkElement> allFilms = Model.GetNavigationItems("Films", NavigationElementType.Navigation, false, true).Where(item => item.Schema == "FilmDetail").OrderBy(item => item.GetAttributeValue("SortTitle") + item.Title);
+
+    //get all the querystring filters
+    String letter = _Functions.GetQuerystring(Model, "letter");
+    String search = _Functions.GetQuerystring(Model, "search");
+    search = search == "Enter keyword" ? "" : search;
+    //three category filters
+    String section = _Functions.GetQuerystring(Model, "section");
+    String program = _Functions.GetQuerystring(Model, "program");
+    String country = _Functions.GetQuerystring(Model, "country");
+    String venue = _Functions.GetQuerystring(Model, "venue");
+
+    IEnumerable<ICMSNavigatingCategory> sectionCategories = _Functions.GetChildCategories(Model, "SectionCategories");
+    IEnumerable<ICMSNavigatingCategory> programCategories = _Functions.GetChildCategories(Model, "ProgramCategories");
+    IEnumerable<ICMSNavigatingCategory> countryCategories = _Functions.GetChildCategories(Model, "CountryCategories");
+    IEnumerable<ICMSNavigatingCategory> venueCategories = _Functions.GetChildCategories(Model, "VenueCategories");
+
+    String thisPageUrl = _Functions.ThisPageUrl(Model, Url);
+    thisPageUrl += thisPageUrl.Contains("?") ? "&" : "?";
+
+                //filtering:  letter, section, program, country and venue all stack.  Search is on its own - it runs separately from all other querystrings and isn't persisted.  
+                //it remains a param in the GetFiltersForUrl function in case this changes again.
+ 
+    <aside class="sortBox festival-sort">
+        <h3>Film Finder <span class="toggle"><i class="fa fa-plus-circle"></i></span></h3>
+        <div class="toggle-section">
+            <form class="search" action="@thisPageUrl" method="get">
+                <input name="search" type="text" value="Enter keyword" onfocus="(this.value == 'Enter keyword') && (this.value = '')" onblur="(this.value == '') && (this.value = 'Enter keyword')">
+                <input type="submit" value=" ">
+                <div class="clearnone"></div>
+            </form>
+            @{
+                String filters = GetFiltersForUrl("", "", section, program, country, venue).ToString();
+            }
+            <select class="sort" name="letter" onchange="window.location.href = '@(thisPageUrl + filters)&letter=' + this.value">
+                <option value="">All (A-Z)</option>
+                @{
+                    for (int i = 0; i < 26; i++)
+                    {
+                        string tempLetter = ((char)('A' + i)).ToString();
+                        //check if any pages start with this letter
+                        // bool hasPages = allFilms.Any(item => item.Title.ToUpper().StartsWith(tempLetter) || item.GetAttributeValue("SortTitle").ToUpper().StartsWith(tempLetter));
+                        //letters without pages should be grayed out
+                    <option href="@tempLetter" @Html.Raw(tempLetter == letter ? "selected=\"selected\"" : "")>@tempLetter</option>
+                    }
+                }
+            </select>
+            <div class="filter-box a-z">
+                <p class="toggle"><a href="#"><span class="default">@(letter != "" ? letter : "All A-Z")</span> <i class="fa fa-chevron-down"></i></a></p>
+                <ul>
+                    @{
+                        for (int i = 0; i < 26; i++)
+                        {
+                            string tempLetter = ((char)('A' + i)).ToString();
+                            //check if any pages start with this letter
+                            // bool hasPages = allFilms.Any(item => item.Title.ToUpper().StartsWith(tempLetter) || item.GetAttributeValue("SortTitle").ToUpper().StartsWith(tempLetter));
+                            //letters without pages should be grayed out
+                        <li><a href="@(thisPageUrl + filters + "&letter=" + tempLetter)">@tempLetter</a></li>
+                        }
+                    }
+                    <li class="all"><a href="@(thisPageUrl + filters)">All A-Z</a></li>
+                </ul>
+            </div>
+            @_Helpers.RenderDropdownFilter(sectionCategories, "section", section, "All Sections", thisPageUrl + GetFiltersForUrl(letter, "", "", program, country, venue))
+            @_Helpers.RenderDropdownFilter(programCategories, "program", program, "All Programs", thisPageUrl + GetFiltersForUrl(letter, "", section, "", country, venue))
+            @_Helpers.RenderDropdownFilter(countryCategories, "country", country, "All Countries", thisPageUrl + GetFiltersForUrl(letter, "", section, program, "", venue))
+            @_Helpers.RenderDropdownFilter(venueCategories, "venue", venue, "All Venues", thisPageUrl + GetFiltersForUrl(letter, "", section, program, country, ""))
+
+            <div class="clear"></div>
+            @{
+                if (letter + search + section + program + country + venue != "")
+                {
+                    //only show filters if you have active filters
+                <label>Filters:</label>
+                    if (!String.IsNullOrWhiteSpace(letter))
+                    {
+                @RenderClearLink(letter, thisPageUrl + GetFiltersForUrl("", search, section, program, country, venue))
+                    }
+                    if (!String.IsNullOrWhiteSpace(search))
+                    {
+                @RenderClearLink(search, thisPageUrl + GetFiltersForUrl(letter, "", section, program, country, venue))
+                    }
+                    if (!String.IsNullOrWhiteSpace(section))
+                    {
+                        ICMSNavigatingCategory sectionCat = sectionCategories.Where(item => item.ID == section).FirstOrDefault();
+                        if (sectionCat != null)
+                        {
+                @RenderClearLink(sectionCat.Name, thisPageUrl + GetFiltersForUrl(letter, search, "", program, country, venue))   
+                        }
+                    }
+                    if (!String.IsNullOrWhiteSpace(program))
+                    {
+                        ICMSNavigatingCategory programCat = programCategories.Where(item => item.ID == program).FirstOrDefault();
+                        if (programCat != null)
+                        {
+                @RenderClearLink(programCat.Name, thisPageUrl + GetFiltersForUrl(letter, search, section, program, "", venue))   
+                        }
+                    }
+                    if (!String.IsNullOrWhiteSpace(country))
+                    {
+                        ICMSNavigatingCategory countryCat = countryCategories.Where(item => item.ID == country).FirstOrDefault();
+                        if (countryCat != null)
+                        {
+                @RenderClearLink(countryCat.Name, thisPageUrl + GetFiltersForUrl(letter, search, section, program, "", venue))   
+                        }
+                    }
+                    if (!String.IsNullOrWhiteSpace(venue))
+                    {
+                        ICMSNavigatingCategory venueCat = venueCategories.Where(item => item.ID == venue).FirstOrDefault();
+                        if (venueCat != null)
+                        {
+                @RenderClearLink(venueCat.Name, thisPageUrl + GetFiltersForUrl(letter, search, program, section, country, ""))   
+                        }
+                    }
+
+                    //clear all goes last
+                @RenderClearLink("Clear All", thisPageUrl + "view=film")
+                }
+            }
+        </div>
+        <div class="clear"></div>
+    </aside>
+}
+
+@helper GetFiltersForUrl(String letter, String search, String section, String program, String country, String venue)
+{
+    String filterStr = "view=film&";
+    filterStr += !String.IsNullOrWhiteSpace(letter) ? "letter=" + letter + "&" : "";
+    filterStr += !String.IsNullOrWhiteSpace(search) ? "search=" + search + "&" : "";
+    filterStr += !String.IsNullOrWhiteSpace(section) ? "section=" + section + "&" : "";
+    filterStr += !String.IsNullOrWhiteSpace(program) ? "program=" + program + "&" : "";
+    filterStr += !String.IsNullOrWhiteSpace(country) ? "country=" + country + "&" : "";
+    filterStr += !String.IsNullOrWhiteSpace(venue) ? "venue=" + venue + "&" : "";
+    @Html.Raw(filterStr)
+}
+
+@helper RenderClearLink(String name, String url)
+{
+    <a class="clear" href="@Html.Raw(url)">@name</a> <a class="close" href="@Html.Raw(url)">
+        <img src="@Url.Asset("prebuilt/images/close-img.png", Model)" alt=""></a>
+}

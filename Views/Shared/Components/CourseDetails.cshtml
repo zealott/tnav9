@@ -1,0 +1,39 @@
+﻿@model Ingeniux.Runtime.ICMSElement
+@using Ingeniux.Runtime
+@if (Model != null)
+{
+	string columnHeading1 = Model.GetElementValue("ColumnHeading1");
+	string columnCopy1 = Model.GetElementValue("ColumnCopy1");
+	string columnHeading2 = Model.GetElementValue("ColumnHeading2");
+	string columnCopy2 = Model.GetElementValue("ColumnCopy2");
+	string columnHeading3 = Model.GetElementValue("ColumnHeading3");
+	string columnCopy3 = Model.GetElementValue("ColumnCopy3");
+	ICMSLinkElement becomeAMemberLink = Model.GetLinkItem("BecomeAMemberLink");
+
+	<section class="course-details blue-background">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-md-4">
+					<h2>@Html.Raw(columnHeading1)</h2>
+					@Html.Raw(columnCopy1)
+				</div>
+
+				<div class="col-xs-12 col-md-4">
+					<h2>@Html.Raw(columnHeading2)</h2>
+					@Html.Raw(columnCopy2)
+				</div>
+
+				<div class="col-xs-12 col-md-4">
+					<h2>@Html.Raw(columnHeading3)</h2>
+					@Html.Raw(columnCopy3)
+				</div>
+
+				<div class="big-link-container">
+					@_Helpers.RenderCMSLink(becomeAMemberLink, Url, cssClasses: "big-link")
+				</div>
+			</div>
+			<!-- Row -->
+		</div>
+		<!-- Container -->
+	</section>
+}

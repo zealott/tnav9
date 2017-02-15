@@ -1,0 +1,28 @@
+﻿@model Ingeniux.Runtime.ICMSNavigationElement
+@using Ingeniux.Runtime
+@using System.Xml.Linq;
+@if (Model != null)
+{
+    var ancestors = Model.GetLinkItems().Where(elt => elt.Schema != "Folder").ToArray();
+    
+    <div class="crumbs">
+        <p>
+        @for (int i = 0; i < ancestors.Count(); i++)
+        {
+            var ancestor = ancestors[i];
+
+            if (i < ancestors.Count() - 1)
+            {
+                @_Helpers.RenderCMSLink(ancestor, Url)
+                @: <span class="pipe">›</span>
+            }
+            else
+            {
+                @_Helpers.RenderCMSLink(ancestor, Url, "", false, "current")
+            }
+        }
+	    </p>
+    </div>  
+	
+
+}

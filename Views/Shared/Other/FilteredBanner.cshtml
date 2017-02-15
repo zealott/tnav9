@@ -1,0 +1,19 @@
+﻿@model Ingeniux.Runtime.ICMSLinkElement
+@using Ingeniux.Runtime
+@if (Model != null)
+{
+    // Component specific code goes here 
+	string image = Model.GetAttributeValue("Image");
+	string header = Model.GetAttributeValue("Header");
+	string subHeader = Model.GetAttributeValue("SubHeader");
+	string link = Model.GetAttributeValue("Link");
+
+	<div class="hero-content-holder">
+		<h1>@Html.Raw(header)</h1>
+		@if (!string.IsNullOrWhiteSpace(subHeader))
+		{
+			<p>@Html.Raw(subHeader)</p>
+		}
+		@*_Helpers.RenderCMSLink(link, Url, cssClasses:"main-button blue-button")*@
+	</div>
+}

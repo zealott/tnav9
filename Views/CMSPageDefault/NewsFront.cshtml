@@ -1,0 +1,94 @@
+﻿@model Ingeniux.Runtime.CMSPageRequest
+@{
+	Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+@using Ingeniux.Runtime
+@if (Model != null)
+{
+
+	ICMSElement title = Model.Element("Title");
+	ICMSLinkElement topNewsHighlight = Model.GetLinkItem("TopNewsHighlight");
+	List<ICMSLinkElement> secondaryHighlights = Model.GetNavigationItems("SecondaryHighlights", NavigationElementType.Navigation, false, true).Where(elt => elt.Schema == "NewsDetail").OrderByDescending(elt => elt.GetAttributeValue("PublicationDate")).ToList();
+	List<ICMSLinkElement> filteredHighlights = secondaryHighlights;
+	var personalizedCode = _Functions.GetMarketingCookie(); // Request.Cookies.AllKeys.Where(elt => elt.Contains("IGXMarketing")).OrderByDescending(elt => _Functions.IntegerOrDefault(Request.Cookies[elt].Value, 0)).FirstOrDefault();
+	if (!string.IsNullOrWhiteSpace(personalizedCode))
+	{
+		filteredHighlights = filteredHighlights.Where(elt => elt.CategoryIds.Contains(personalizedCode)).ToList();
+	}
+	filteredHighlights.AddRange(secondaryHighlights.Where(elt => filteredHighlights.Any(alt => alt.ID != elt.ID)));
+	List<ICMSLinkElement> targetedNewsStoriesWithImages = filteredHighlights.Take(2).ToList();
+	List<ICMSLinkElement> targetedNewsStoriesWithoutImages = filteredHighlights.Skip(2).Take(3).ToList();
+
+	<div class="page-title blue-background center-container">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-xs-offset-0 col-sm-offset-2 col-sm-8">
+					@{
+						Html.RenderPartial("Editable/Title", title);
+					}
+				</div>
+			</div>
+			<!-- Row -->
+		</div>
+		<!-- Container -->
+	</div>
+
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					@if (topNewsHighlight != null)
+					{
+						<div class="top-highlight-story">
+							@_Helpers.RenderImageLink(topNewsHighlight, Url, topNewsHighlight.GetAttributeValue("ReUseImage"))
+							<a href="@_Functions.GetLinkAction(topNewsHighlight, Url)"><h2>@Html.Raw(topNewsHighlight.GetAttributeValue("Title"))</h2></a>
+							@if (!string.IsNullOrWhiteSpace(topNewsHighlight.GetAttributeValue("PublicationDate")))
+							{
+								<p>@_Helpers.FormatDate(topNewsHighlight.GetAttributeValue("PublicationDate"), "MMMM d, yyyy")</p>
+							}
+							@if (!string.IsNullOrWhiteSpace(topNewsHighlight.GetAttributeValue("Abstract")))
+							{
+								<p>@Html.Raw(topNewsHighlight.GetAttributeValue("Abstract"))</p>
+							}
+							<hr>
+						</div>
+					}
+					@if (targetedNewsStoriesWithImages.Any())
+					{
+					<div class="row targeted-news-stories-with-img">
+						@foreach (var targetedNewsStoryWithImage in targetedNewsStoriesWithImages)
+						{
+							<div class="targeted-news-story-holder col-xs-12 col-sm-6">
+								<a href="@_Functions.GetLinkAction(targetedNewsStoryWithImage, Url)"><h2>@Html.Raw(targetedNewsStoryWithImage.GetAttributeValue("Title"))</h2></a>
+								@if (!string.IsNullOrWhiteSpace(targetedNewsStoryWithImage.GetAttributeValue("PublicataionDate")))
+								{
+									<p>@_Helpers.FormatDate(targetedNewsStoryWithImage.GetAttributeValue("PublicationDate"), "MMMM d, yyyy")</p>
+								}
+								@_Helpers.RenderImageLink(targetedNewsStoryWithImage, Url, targetedNewsStoryWithImage.GetAttributeValue("ReUseImage"))
+								<p>@Html.Raw(targetedNewsStoryWithImage.GetAttributeValue("Abstract"))</p>
+							</div>							
+						}
+						<hr>
+					</div>
+					}
+					@if (targetedNewsStoriesWithoutImages.Any())
+					{
+						<div class="row targeted-news-stories-without-img">
+							@foreach (var targetNewsStoryWithoutImage in targetedNewsStoriesWithoutImages)
+							{
+								<div class="targeted-news-story-holder col-xs-12 col-sm-4">
+								<a href="@_Functions.GetLinkAction(targetNewsStoryWithoutImage, Url)"><h2>@Html.Raw(targetNewsStoryWithoutImage.GetAttributeValue("Title"))</h2></a>
+								@if (!string.IsNullOrWhiteSpace(targetNewsStoryWithoutImage.GetAttributeValue("PublicataionDate")))
+								{
+									<p>@_Helpers.FormatDate(targetNewsStoryWithoutImage.GetAttributeValue("PublicationDate"), "MMMM d, yyyy")</p>
+								}
+								<p>@Html.Raw(targetNewsStoryWithoutImage.GetAttributeValue("Abstract"))</p>									
+								</div>								
+							}
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</section>    
+}

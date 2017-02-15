@@ -1,0 +1,9 @@
+﻿@model Ingeniux.Runtime.ICMSElement
+@using Ingeniux.Runtime
+@if (Model != null && (!String.IsNullOrWhiteSpace(Model.Value) || Model.EditMode))
+{
+	<div @_Helpers.RenderICEAttribute(Model)>
+		@Html.Raw(Model.Value)
+	</div>
+}
+ 

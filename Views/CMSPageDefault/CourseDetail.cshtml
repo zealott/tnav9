@@ -1,0 +1,207 @@
+﻿@model Ingeniux.Runtime.CMSPageRequest
+@{
+	Layout = "~/Views/Shared/_MainLayout.cshtml"; //renders header and footer information.
+}
+@using Ingeniux.Runtime
+@if (Model != null)
+{
+     
+	ICMSElement title = Model.Element("Title");
+	ICMSElement eventLocation = Model.Element("EventLocation");
+	ICMSLinkElement registerNowLink = Model.GetLinkItem("RegisterNowLink");
+	ICMSElement eventStartDate = Model.Element("EventStartDate");
+	ICMSElement eventStartTime = Model.Element("EventStartTime");
+	ICMSElement eventEndDate = Model.Element("EventEndDate");
+	ICMSElement eventEndTime = Model.Element("EventEndTime");
+	ICMSElement relatedCourses = Model.Element("RelatedCourses");
+	ICMSElement bodyCopy = Model.Element("BodyCopy");
+	ICMSElement siteControl = _Functions.GetSiteControl(Model);
+	string relatedCoursesHeading = siteControl != null ? siteControl.GetElementValue("RelatedCoursesHeading") : "";
+	string additionalDatesHeading = siteControl != null ? siteControl.GetElementValue("AdditionalDatesHeading") : "";
+	string topicCloudHeading = siteControl != null ? siteControl.GetElementValue("TopicCloudHeader") : "";
+	string bookstoreAlsoBoughtHeading = siteControl != null ? siteControl.GetElementValue("BookstoreAlsoBoughtHeading") : "";
+	List<ICMSLinkElement> allCourses = Model.GetNavigationItems("AllCourses", NavigationElementType.Navigation, true, true).Where(elt => elt.Schema == "CourseDetail").ToList();
+	List<ICMSLinkElement> allProducts = Model.GetNavigationItems("AllBookstoreProducts", NavigationElementType.Navigation, true, true).Where(elt => elt.Schema == "ProductDetail").ToList();
+	List<ICMSNavigatingCategory> relatedCoursesCategories = _Functions.GetChildCategories(Model.Page, "RelatedCoursesCategories", true, false, true);
+	List<ICMSNavigatingCategory> courseTagCloudCategories = _Functions.GetChildCategories(Model.Page, "CourseTopicTagCloudCategories", true, false, true).Where(elt => Model.Categories.Any(alt => alt.ID == elt.ID)).ToList();
+	List<ICMSNavigatingCategory> bookstoreAlsoBoughtCategories = _Functions.GetChildCategories(Model.Page, "BookstoreAlsoBoughtCategories", true, false, true).Where(elt => Model.Categories.Any(alt => alt.ID == elt.ID)).ToList();
+	List<ICMSLinkElement> filteredCourses = new List<ICMSLinkElement>();
+	List<ICMSLinkElement> filteredProducts = new List<ICMSLinkElement>();
+	
+	//get my categories, filter out categories that are NOT considered related category courses
+	List<ICMSCategory> myRelatedCategories = Model.Categories.Where(elt => relatedCoursesCategories.Any(alt => alt.ID == elt.ID)).ToList();
+	//filter the allCourses List to exclude anything not in myRelatedCategories.
+	//Model.ID != elt.ID, exclude my page from being rendered as an associated course.
+	filteredCourses = allCourses.Where(elt => Model.ID != elt.ID && elt.GetAttributeValue("CategoryIds").Split('|').Any(alt => myRelatedCategories.Any(balt => balt.ID == alt))).ToList();
+	
+	filteredProducts = allProducts.Where(elt => elt.GetAttributeValue("CategoryIds").Split('|').Any(alt => bookstoreAlsoBoughtCategories.Any(balt => balt.ID == alt))).ToList();
+
+	<div class="page-title burgundy-background center-container">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-xs-offset-0 col-md-offset-2 col-md-8">
+					@{
+						Html.RenderPartial("Editable/Title", title);
+					}
+				</div>
+			</div>
+			<!-- Row -->
+		</div>
+		<!-- Container -->
+	</div>
+
+	<section>
+		<div class="container">
+			<div class="row">
+
+				<div class="col-xs-12 col-sm-2">
+					<div class="mobile-trigger"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;Course Menu</div>
+					<ul class="left-nav">
+						<li><a href="#"><strong>Course Schedule and Registration</strong></a></li>
+						<li><a href="#">News Archive</a></li>
+					</ul>
+				</div>
+
+				<div class="col-xs-12 col-sm-8">
+					<div class="header-info">
+
+						<div class="time-date-holder">
+							@_Helpers.FormatEventDates(eventStartDate.Value, eventEndDate.Value, "MMMM d, yyyy")
+							@_Helpers.FormatEventTimes(eventStartTime.Value, eventEndTime.Value)
+						</div>
+						@if (!string.IsNullOrWhiteSpace(eventLocation.Value))
+						{
+							<div class="place-holder" @_Helpers.RenderICEAttribute(eventLocation)>@Html.Raw(eventLocation.Value)</div>
+						}
+						@_Helpers.RenderCMSLink(registerNowLink, Url, cssClasses:"main-button blue-button")
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-2">
+					<ul class="right-nav">
+						@{
+							Html.RenderPartial("PageLayout/Share", Model);
+						}
+					</ul>
+				</div>
+			</div>
+			<!-- Row -->
+		</div>
+		<!-- Container -->
+	</section>
+	
+	if (filteredCourses.Any())
+	{
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<h2>@Html.Raw(additionalDatesHeading)</h2>
+					<div class="text-slider">
+						@foreach (var filteredCourse in filteredCourses)
+						{
+							<div class="slider-item match-height-1">
+								<a href="@_Functions.GetLinkAction(filteredCourse, Url)">
+									@if (!string.IsNullOrWhiteSpace(filteredCourse.GetAttributeValue("EventStartDate")))
+									{
+										<p class="slider-date">@_Helpers.FormatEventDates(filteredCourse.GetAttributeValue("EventStartDate"), filteredCourse.GetAttributeValue("EventEndDate"), "MMMM d")</p>
+									}
+									<p class="slider-main-title">@Html.Raw(filteredCourse.GetAttributeValue("Title"))</p>
+									<p class="slider-third-line">@Html.Raw(filteredCourse.GetAttributeValue("EventLocation"))</p>
+								</a>
+							</div>							
+						}
+					</div>
+				</div>
+			</div>
+			<!-- Row -->
+		</div>
+		<!-- Container -->
+	}
+
+	if (!string.IsNullOrWhiteSpace(bodyCopy.Value))
+	{
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-xs-offset-0 col-md-offset-2 col-md-8">
+						@{
+							Html.RenderPartial("Editable/BodyCopy", bodyCopy);
+						}
+						@if (courseTagCloudCategories.Any())
+						{
+							<h3>@Html.Raw(topicCloudHeading)</h3>
+							<div class="taxonomy-holder burgundy">
+								@foreach (var courseTagCloudCategory in courseTagCloudCategories)
+								{
+									<span>@courseTagCloudCategory.Name</span>
+								}
+							</div>
+						}
+					</div>
+				</div>
+				<!-- Row -->
+			</div>
+			<!-- Container -->
+		</section>
+		<hr>
+	}
+
+	if (filteredCourses.Any())
+	{
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+				
+						<h2>@Html.Raw(relatedCoursesHeading)</h2>
+						<div class="text-slider">
+							@foreach (var filteredCourse in filteredCourses)
+							{
+								<div class="slider-item match-height-1">
+									<a href="@_Functions.GetLinkAction(filteredCourse, Url)">
+										@if (!string.IsNullOrWhiteSpace(filteredCourse.GetAttributeValue("EventStartDate")))
+										{
+											<p class="slider-date">@_Helpers.FormatEventDates(filteredCourse.GetAttributeValue("EventStartDate"), filteredCourse.GetAttributeValue("EventEndDate"), "MMMM d")</p>
+										}
+										<p class="slider-main-title">@Html.Raw(filteredCourse.GetAttributeValue("Title"))</p>
+										<p class="slider-third-line">@Html.Raw(filteredCourse.GetAttributeValue("EventLocation"))</p>
+									</a>
+								</div>							
+							}
+
+						</div>
+					</div>
+				</div>
+				<!-- Row -->
+			</div>
+			<!-- Container -->
+		</section>
+	}
+	if (filteredProducts.Any())
+	{
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<h2>@Html.Raw(bookstoreAlsoBoughtHeading)</h2>
+						<div class="image-slider">
+							@foreach (var filteredProduct in filteredProducts)
+							{
+								<div class="slider-item">
+									<a href="@_Functions.GetLinkAction(filteredProduct, Url)">
+										<span class="slider-img-holder">
+											@_Helpers.RenderImage(filteredProduct.GetAttributeValue("Thumbnail"), Url, filteredProduct.GetAttributeValue("ThumbnailAlt"), filteredProduct)
+											<span class="add-to-cart-overlay"><span class="vert-center-only">Add to Cart</span></span>
+										</span>
+										<p class="slider-info">@Html.Raw(filteredProduct.GetAttributeValue("Abstract"))</p>
+									</a>
+								</div>								
+							}
+						</div>
+					</div>
+				</div>
+				<!-- Row -->
+			</div>
+			<!-- Container -->
+		</section>
+	}
+}

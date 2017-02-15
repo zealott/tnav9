@@ -1,0 +1,222 @@
+﻿@model Ingeniux.Runtime.ICMSElement
+@using Ingeniux.Runtime
+@if (Model != null)
+{
+
+	string header = Model.GetElementValue("Header");
+	string topicFilterLabel = Model.GetElementValue("TopicFilterLabel");
+	string programFilterLabel = Model.GetElementValue("ProgramFilterLabel");
+	string dateFiltlerLabel = Model.GetElementValue("DateFilterLabel");
+	string locaitonFilterLabel = Model.GetElementValue("LocationFilterLabel");
+	string learningOptionsLabel = Model.GetElementValue("LearningOptionsLabel");
+	string showMoreButtonLabel = Model.GetElementValue("ShowMoreButtonLabel");
+	List<ICMSLinkElement> allCourses = Model.Page.GetNavigationItems("AllCourses", NavigationElementType.Navigation, true, true).Where(elt => elt.Schema == "CourseDetail").ToList();
+	List<ICMSNavigatingCategory> courseTopics = _Functions.GetChildCategories(Model, "TopicFilterCategories", false, false, true);
+	List<ICMSNavigatingCategory> coursePrograms = _Functions.GetChildCategories(Model, "CoursePrograms", false, false, true);
+	List<string> availableLocations = allCourses.Select(elt => elt.GetAttributeValue("EventLocation")).Distinct().ToList();
+	<section class="courses blue-background">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					@if (!string.IsNullOrWhiteSpace(header))
+					{
+						<h2>@Html.Raw(header)</h2>
+					}
+					<ul class="big-links-ul">
+						<li><a class="big-link filter-topic" href="#">@Html.Raw(topicFilterLabel)</a></li>
+						<li><a class="big-link filter-program" href="#">@Html.Raw(programFilterLabel)</a></li>
+						<li><a class="big-link filter-date" href="#">@Html.Raw(dateFiltlerLabel)</a></li>
+						<li><a class="big-link filter-location" href="#">@Html.Raw(locaitonFilterLabel)</a></li>
+						<li><a class="big-link filter-learning" href="#">@Html.Raw(learningOptionsLabel)</a></li>
+					</ul>
+
+					<!-- Filters For Topics -->
+					<form action="" class="filter-topic-selection filter-show-hide">
+						<select name="" id="" class="SlectBox">
+							@foreach (var courseTopic in courseTopics)
+							{
+								<option value="@courseTopic.ID">@courseTopic.Name</option>
+							}
+							
+						</select>
+					</form>
+
+					<!-- Filters For Program -->
+					<form action="" class="filter-program-selection filter-show-hide">
+						<select name="" id="" class="SlectBox">
+							@foreach (var courseProgram in coursePrograms)
+							{
+								<option value="@courseProgram.ID">@courseProgram.Name</option>
+							}
+						</select>
+
+						<select name="" id="" class="SlectBox">
+							<option value="Topic">Program One B.</option>
+							<option value="1">Option One</option>
+							<option value="2">Option Two</option>
+							<option value="3">Option Three</option>
+							<option value="4">Option Four</option>
+							<option value="5">Option Five</option>
+						</select>
+					</form>
+
+					<form action="" class="filter-date-selection filter-show-hide">
+						<div class="date-picker-holder">
+							<input type="text" id="date-picker-start">
+							<label class="date-pickers-label" for="date-picker-start">Start Date</label>
+						</div>
+						<div class="date-picker-holder">
+							<input type="text" id="date-picker-end">
+							<label class="date-pickers-label" for="date-picker-end">End Date</label>
+						</div>
+					</form>
+
+					<form action=""  class="filter-location-selection filter-show-hide">
+						<i class="fa fa-search" aria-hidden="true"></i>
+						<input type="text" id="filter-location" placeholder="Search">
+					</form>
+
+					<form action="" class="filter-learning-selection filter-show-hide">
+						<div class="learning-options-holder">
+							<div class="header">In Person</div>
+							<div class="radio-button-holder">
+								<input type="radio" name="radio-button-1" id="radio-1" value="1">
+								<label for="radio-1">Classroom</label>
+							</div>
+							<div class="radio-button-holder">
+								<input type="radio" name="radio-button-1" id="radio-2" value="2">
+								<label for="radio-2">Custom</label>
+							</div>
+						</div>
+						<div class="learning-options-holder">
+							<div class="header">Online</div>
+							<div class="radio-button-holder">
+								<input type="radio" name="radio-button-2" id="radio-2-1" value="1">
+								<label for="radio-2-1">Webinar</label>
+							</div>
+							<div class="radio-button-holder">
+								<input type="radio" name="radio-button-2" id="radio-2-2" value="2">
+								<label for="radio-2-2">Self-Paced</label>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- row -->
+		</div>
+		<!-- Container -->
+	</section>
+	<section>
+		<div class="container">
+			<div class="row">
+				<!-- Header Result For Filters Above -->
+				<div class="col-xs-12 filter-results-show-hide">
+					<h2>Filter Results Header</h2>
+				</div>
+				@{
+							double blockSize = 3d;
+
+							for (int i = 0; i < Math.Ceiling(allCourses.Count() / blockSize); i++)
+							{
+						<div class="results-container-row">
+							@for (int j = i * (int)blockSize; j < (i * blockSize) + (int)blockSize && j < allCourses.Count(); j++)
+							{
+								var item = allCourses.ElementAt(j);
+
+								<div class="col-xs-12 col-sm-4">
+									<div class="result-holder">
+										<a href="#" rel="@item.ID">
+											<div class="result-date">@_Helpers.FormatEventDates(item.GetAttributeValue("EventStartDate"), item.GetAttributeValue("EventEndDate"), "MMMM d")</div>
+											<div class="result-title"><strong>@Html.Raw(item.GetAttributeValue("Title"))</strong></div>
+											<div class="result-location">@Html.Raw(item.GetAttributeValue("Location"))</div>
+											<div class="result-cost">$@Html.Raw(item.GetAttributeValue("Cost"))</div>
+										</a>
+									</div>
+								</div>
+							}
+						</div>
+							}
+				}
+				<div class="big-link-container">
+					<a class="big-link show-more-trigger" href="#">@Html.Raw(showMoreButtonLabel)</a>
+				</div>
+			</div>
+			<!-- Row -->
+		</div>
+		<!-- Container -->
+	</section>
+
+							foreach (var course in allCourses)
+							{
+		<div class="course-quick-view-container @course.ID">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="course-quick-view-holder">
+							<div class="close-quick-view"><i class="fa fa-times" aria-hidden="true"></i></div>
+							<div class="quick-view-title"><h1>@Html.Raw(course.GetAttributeValue("Title"))</h1></div>
+							<div class="quick-view-location">@Html.Raw(course.GetAttributeValue("EventLocation"))</div>
+							@if (!string.IsNullOrWhiteSpace(course.GetAttributeValue("RegistrationNote")))
+							{
+								<div class="quick-view-date-time">@Html.Raw(course.GetAttributeValue("RegistrationNote"))</div>
+							}
+							<div class="quick-view-address">
+								@if (!string.IsNullOrWhiteSpace(course.GetAttributeValue("StreetAddress")))
+								{
+									@Html.Raw(course.GetAttributeValue("StreetAddress"))
+								}
+								@if (!string.IsNullOrWhiteSpace(course.GetAttributeValue("City")) || !string.IsNullOrWhiteSpace(course.GetAttributeValue("State")) || !string.IsNullOrWhiteSpace(course.GetAttributeValue("ZipCode")))
+								{
+									<br>@Html.Raw(course.GetAttributeValue("City"))
+									if (!string.IsNullOrWhiteSpace(course.GetAttributeValue("City")))
+									{
+										@:,
+									}
+									@Html.Raw(course.GetAttributeValue("City")) @Html.Raw(course.GetAttributeValue("ZipCode"))
+								}
+								@if (!string.IsNullOrWhiteSpace(course.GetAttributeValue("PhoneNumber")))
+								{
+									<br>@Html.Raw(course.GetAttributeValue("PhoneNumber"))
+								}
+							</div>
+							@if (!string.IsNullOrWhiteSpace(course.GetAttributeValue("QuickViewNote")))
+							{
+								<p>@Html.Raw(course.GetAttributeValue("QuickViewNote"))</p>
+							}
+							else
+							{
+								<p>&#160;</p>
+							}
+							<a href="#" class="action-button blue-background">Register Now</a>
+							<a href="#" class="action-button ">Full Event Details</a>
+						</div>
+					</div>
+				</div><!-- Row -->
+			</div><!-- Container -->
+		</div>		
+							}
+
+	<script>
+		$('.result-holder a').click(function (e) {
+			e.preventDefault();
+			var xID = this.getAttribute('rel');
+
+			$('.course-quick-view-container.' + xID).fadeIn();
+		});
+
+		$(function () {
+			var availableTags = [
+				@foreach (var location in availableLocations)
+				{
+				  <text>"</text>@(location)<text>"</text>if (location != availableLocations.Last()){@:,
+					}
+				}
+			];
+			$("#filter-location").autocomplete({
+				source: availableTags
+			});
+		});
+	</script>
+
+
+}
